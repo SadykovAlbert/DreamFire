@@ -31,11 +31,12 @@ class FriendsViewController: UIViewController,UITableViewDelegate,UITableViewDat
         print("###################")
         
         friends = []
-        
         guard let user = Auth.auth().currentUser else {return}
         
         ref.child(user.uid).child("friends").observe(.value) { (snapshot) in
             print("print")
+            var _friends:[AppUser] = []
+
             print(snapshot.children)
             
             
@@ -44,10 +45,10 @@ class FriendsViewController: UIViewController,UITableViewDelegate,UITableViewDat
                     print("print2")
                     print(snap)
                     let user = AppUser(snapshot: snap)
-                    self.friends.append(user)
+                    _friends.append(user)
                 }
             }
-            
+            self.friends = _friends
             self.tableView.reloadData()
         }
         

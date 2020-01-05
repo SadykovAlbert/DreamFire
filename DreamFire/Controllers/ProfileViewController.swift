@@ -25,8 +25,12 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setupUI()
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
     //
     func setupUI(){
@@ -144,5 +148,5 @@ class ProfileViewController: UIViewController {
     func addToFriendButtonTapped(){
         dismiss(animated: true, completion: nil)
     }
-
+    
 }

@@ -11,6 +11,10 @@ class GroupViewController: UIViewController {
     }
     
 
+    @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
+        
+        performSegue(withIdentifier: "createGroupSegue", sender: nil)
+    }
     
 
 }

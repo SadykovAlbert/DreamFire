@@ -12,7 +12,7 @@
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="ToDoFIRE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="DreamFire" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -122,7 +122,7 @@
         <!--Friends-->
         <scene sceneID="E47-MR-8jG">
             <objects>
-                <viewController title="Friends" id="5Nh-jv-Yqs" customClass="FriendsViewController" customModule="ToDoFIRE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Friends" id="5Nh-jv-Yqs" customClass="FriendsViewController" customModule="DreamFire" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="5Vo-aX-cj8"/>
                         <viewControllerLayoutGuide type="bottom" id="0gV-Ya-fAK"/>
@@ -135,7 +135,7 @@
                                 <rect key="frame" x="0.0" y="118" width="414" height="695"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="85" id="5FK-yz-lWg" customClass="CustomTableViewCell" customModule="ToDoFIRE" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="85" id="5FK-yz-lWg" customClass="CustomTableViewCell" customModule="DreamFire" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="85"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5FK-yz-lWg" id="hMj-HR-kSt">
@@ -150,7 +150,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GjX-t1-9Gi">
-                                                    <rect key="frame" x="105" y="11" width="496" height="21"/>
+                                                    <rect key="frame" x="105" y="11" width="310" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -223,7 +223,7 @@
         <!--Profile-->
         <scene sceneID="hFs-1O-z2N">
             <objects>
-                <viewController title="Profile" id="PoR-hZ-ylW" customClass="ProfileViewController" customModule="ToDoFIRE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Profile" id="PoR-hZ-ylW" customClass="ProfileViewController" customModule="DreamFire" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Zli-Xe-FRH"/>
                         <viewControllerLayoutGuide type="bottom" id="vx3-GI-3hu"/>
@@ -233,34 +233,34 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="38" translatesAutoresizingMaskIntoConstraints="NO" id="1qI-KC-iOD">
-                                <rect key="frame" x="10" y="64" width="394" height="778"/>
+                                <rect key="frame" x="10" y="108" width="394" height="685"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stdimage" translatesAutoresizingMaskIntoConstraints="NO" id="Gmn-4i-QsF">
-                                        <rect key="frame" x="40" y="0.0" width="314" height="234"/>
+                                        <rect key="frame" x="40" y="0.0" width="314" height="203"/>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ri6-jV-aFc">
-                                        <rect key="frame" x="10" y="272" width="374" height="234"/>
+                                        <rect key="frame" x="10" y="241" width="374" height="203"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="e4j-1q-hy6">
-                                                <rect key="frame" x="0.0" y="0.0" width="374" height="47"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="374" height="40.5"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qOe-2h-UT0">
-                                                <rect key="frame" x="0.0" y="57" width="374" height="46.5"/>
+                                                <rect key="frame" x="0.0" y="50.5" width="374" height="40.5"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Login" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QaN-Cq-UlG">
-                                                <rect key="frame" x="0.0" y="113.5" width="374" height="47"/>
+                                                <rect key="frame" x="0.0" y="101" width="374" height="41"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7oa-TM-pLT">
-                                                <rect key="frame" x="0.0" y="170.5" width="374" height="63.5"/>
+                                                <rect key="frame" x="0.0" y="152" width="374" height="51"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -268,7 +268,7 @@
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7x0-EN-nLb">
-                                        <rect key="frame" x="178.5" y="544" width="37" height="234"/>
+                                        <rect key="frame" x="178.5" y="482" width="37" height="203"/>
                                         <state key="normal" title="Done"/>
                                         <connections>
                                             <action selector="buttonTapped:" destination="PoR-hZ-ylW" eventType="touchUpInside" id="D7R-Vc-raV"/>
@@ -292,6 +292,7 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Profile" id="Q7a-uK-ug6"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="buttonOutlet" destination="7x0-EN-nLb" id="nHU-y2-oWP"/>
                         <outlet property="firstNameTextField" destination="qOe-2h-UT0" id="L4k-Jc-ak5"/>
@@ -309,7 +310,7 @@
         <!--New Group-->
         <scene sceneID="UTV-bF-8AB">
             <objects>
-                <viewController title="New Group" id="vhH-o5-JIR" sceneMemberID="viewController">
+                <viewController title="New Group" id="vhH-o5-JIR" customClass="NewGroupViewController" customModule="DreamFire" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="59h-8a-NUd"/>
                         <viewControllerLayoutGuide type="bottom" id="Dik-Z9-Vf7"/>
@@ -319,7 +320,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="36" translatesAutoresizingMaskIntoConstraints="NO" id="DCn-TU-bkH">
-                                <rect key="frame" x="30" y="98" width="354" height="754"/>
+                                <rect key="frame" x="30" y="54" width="354" height="798"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ewy-3G-uTr">
                                         <rect key="frame" x="152" y="0.0" width="50" height="128"/>
@@ -366,7 +367,7 @@
                                         </subviews>
                                     </stackView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="EWY-Wk-uZr">
-                                        <rect key="frame" x="0.0" y="372" width="354" height="382"/>
+                                        <rect key="frame" x="0.0" y="372" width="354" height="426"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="6FR-ak-3IR">
@@ -398,6 +399,11 @@
                             <constraint firstItem="DCn-TU-bkH" firstAttribute="top" secondItem="59h-8a-NUd" secondAttribute="bottom" constant="10" id="pBV-6D-MzP"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="descriptionTextField" destination="Tab-Y3-J15" id="yCt-7a-OBO"/>
+                        <outlet property="nameTextField" destination="bV3-4W-8BQ" id="Wry-CM-zNw"/>
+                        <outlet property="nicknameTextField" destination="2pr-eW-eBK" id="mjR-WL-MqT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="evC-4x-whl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -406,7 +412,7 @@
         <!--Groups-->
         <scene sceneID="CWa-tR-qT4">
             <objects>
-                <viewController title="Groups" id="jjy-pc-Tlo" customClass="GroupViewController" customModule="ToDoFIRE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Groups" id="jjy-pc-Tlo" customClass="GroupViewController" customModule="DreamFire" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="J6O-lp-y8G"/>
                         <viewControllerLayoutGuide type="bottom" id="gyi-nh-kBW"/>
@@ -415,10 +421,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="QGm-PG-zi9">
-                                <rect key="frame" x="0.0" y="88" width="414" height="56"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eVE-Og-u7e">
                                 <rect key="frame" x="0.0" y="144" width="414" height="669"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -430,19 +432,34 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="84.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="vhH-o5-JIR" kind="showDetail" identifier="showDetailGroup" id="QY6-wi-YRA"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gBL-EQ-XAR">
+                                <rect key="frame" x="0.0" y="88" width="414" height="44"/>
+                                <items>
+                                    <navigationItem title="Title" id="ZmW-dH-DyK">
+                                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="sXK-v6-zo6">
+                                            <connections>
+                                                <action selector="addButtonPressed:" destination="jjy-pc-Tlo" id="QE9-hC-bWU"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.86378184886003928" blue="0.83784190439342476" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="eVE-Og-u7e" firstAttribute="top" secondItem="QGm-PG-zi9" secondAttribute="bottom" id="25H-8p-MlT"/>
-                            <constraint firstAttribute="trailing" secondItem="QGm-PG-zi9" secondAttribute="trailing" id="9wh-Li-TE9"/>
+                            <constraint firstItem="eVE-Og-u7e" firstAttribute="top" secondItem="gBL-EQ-XAR" secondAttribute="bottom" constant="12" id="5df-gy-pIZ"/>
+                            <constraint firstItem="gBL-EQ-XAR" firstAttribute="leading" secondItem="tUD-Qz-H5s" secondAttribute="leading" id="EOv-ej-D89"/>
                             <constraint firstItem="gyi-nh-kBW" firstAttribute="top" secondItem="eVE-Og-u7e" secondAttribute="bottom" id="Tai-fJ-D3v"/>
-                            <constraint firstItem="QGm-PG-zi9" firstAttribute="leading" secondItem="tUD-Qz-H5s" secondAttribute="leading" id="Y73-WC-7hw"/>
                             <constraint firstAttribute="trailing" secondItem="eVE-Og-u7e" secondAttribute="trailing" id="YFE-wj-QXb"/>
-                            <constraint firstItem="QGm-PG-zi9" firstAttribute="top" secondItem="J6O-lp-y8G" secondAttribute="bottom" id="kBU-TM-ddc"/>
+                            <constraint firstItem="gBL-EQ-XAR" firstAttribute="top" secondItem="J6O-lp-y8G" secondAttribute="bottom" id="bPG-P6-dgp"/>
                             <constraint firstItem="eVE-Og-u7e" firstAttribute="leading" secondItem="tUD-Qz-H5s" secondAttribute="leading" id="nTA-TA-dVO"/>
+                            <constraint firstAttribute="trailing" secondItem="gBL-EQ-XAR" secondAttribute="trailing" id="udL-Rh-vVY"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Groups" id="vBM-PV-Ghw"/>
@@ -457,7 +474,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="5rt-NO-vBX">
             <objects>
-                <tabBarController id="KeE-wO-gGW" sceneMemberID="viewController">
+                <tabBarController id="KeE-wO-gGW" customClass="TabBarController" customModule="DreamFire" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="f9k-8X-Bg6"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="EDM-iW-6x8">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
@@ -498,6 +515,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="CWe-Dx-EXm"/>
-        <segue reference="gup-0V-U5D"/>
+        <segue reference="QY6-wi-YRA"/>
+        <segue reference="hHU-1o-fgg"/>
     </inferredMetricsTieBreakers>
 </document>

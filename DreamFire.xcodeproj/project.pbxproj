@@ -3,25 +3,41 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		50D6C4FC23C210EC00E66E37 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D6C4FB23C210EC00E66E37 /* AppDelegate.swift */; };
-		50D6C4FE23C210EC00E66E37 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D6C4FD23C210EC00E66E37 /* ViewController.swift */; };
-		50D6C50123C210EC00E66E37 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50D6C4FF23C210EC00E66E37 /* Main.storyboard */; };
+		2CC75FF4BFE65C5EB80D03FD /* Pods_DreamFire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF63C52F34ECCEF02AD74F1F /* Pods_DreamFire.framework */; };
 		50D6C50323C210ED00E66E37 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50D6C50223C210ED00E66E37 /* Assets.xcassets */; };
 		50D6C50623C210ED00E66E37 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50D6C50423C210ED00E66E37 /* LaunchScreen.storyboard */; };
+		50D6C50E23C2111F00E66E37 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D6C50D23C2111F00E66E37 /* User.swift */; };
+		50D6C51423C2113200E66E37 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D6C50F23C2113200E66E37 /* FriendsViewController.swift */; };
+		50D6C51523C2113200E66E37 /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D6C51023C2113200E66E37 /* GroupViewController.swift */; };
+		50D6C51623C2113200E66E37 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D6C51123C2113200E66E37 /* CustomTableViewCell.swift */; };
+		50D6C51723C2113200E66E37 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D6C51223C2113200E66E37 /* ProfileViewController.swift */; };
+		50D6C51823C2113200E66E37 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D6C51323C2113200E66E37 /* LoginViewController.swift */; };
+		50D6C51A23C2115000E66E37 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D6C51923C2115000E66E37 /* AppDelegate.swift */; };
+		50D6C51C23C2117D00E66E37 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50D6C51B23C2117D00E66E37 /* Main.storyboard */; };
+		50D6C51E23C2133700E66E37 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 50D6C51D23C2133700E66E37 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		50D6C4F823C210EC00E66E37 /* DreamFire.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DreamFire.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		50D6C4FB23C210EC00E66E37 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		50D6C4FD23C210EC00E66E37 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		50D6C50023C210EC00E66E37 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		50D6C50223C210ED00E66E37 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		50D6C50523C210ED00E66E37 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		50D6C50723C210ED00E66E37 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		50D6C50D23C2111F00E66E37 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		50D6C50F23C2113200E66E37 /* FriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
+		50D6C51023C2113200E66E37 /* GroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
+		50D6C51123C2113200E66E37 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		50D6C51223C2113200E66E37 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		50D6C51323C2113200E66E37 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		50D6C51923C2115000E66E37 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		50D6C51B23C2117D00E66E37 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		50D6C51D23C2133700E66E37 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		7AA35E3B17EF82E46729A74B /* Pods-DreamFire.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DreamFire.debug.xcconfig"; path = "Target Support Files/Pods-DreamFire/Pods-DreamFire.debug.xcconfig"; sourceTree = "<group>"; };
+		AF63C52F34ECCEF02AD74F1F /* Pods_DreamFire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DreamFire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D346C1345786237AA188F698 /* Pods-DreamFire.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DreamFire.release.xcconfig"; path = "Target Support Files/Pods-DreamFire/Pods-DreamFire.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +45,40 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CC75FF4BFE65C5EB80D03FD /* Pods_DreamFire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		50D625ED23C2170400009D61 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				50D6C51123C2113200E66E37 /* CustomTableViewCell.swift */,
+				50D6C50F23C2113200E66E37 /* FriendsViewController.swift */,
+				50D6C51023C2113200E66E37 /* GroupViewController.swift */,
+				50D6C51323C2113200E66E37 /* LoginViewController.swift */,
+				50D6C51223C2113200E66E37 /* ProfileViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		50D625EE23C2170E00009D61 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				50D6C50D23C2111F00E66E37 /* User.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		50D6C4EF23C210EC00E66E37 = {
 			isa = PBXGroup;
 			children = (
 				50D6C4FA23C210EC00E66E37 /* DreamFire */,
 				50D6C4F923C210EC00E66E37 /* Products */,
+				B77C26DEEBD01F80EE57A412 /* Pods */,
+				F48BB8991065C890F680E764 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,14 +93,33 @@
 		50D6C4FA23C210EC00E66E37 /* DreamFire */ = {
 			isa = PBXGroup;
 			children = (
-				50D6C4FB23C210EC00E66E37 /* AppDelegate.swift */,
-				50D6C4FD23C210EC00E66E37 /* ViewController.swift */,
-				50D6C4FF23C210EC00E66E37 /* Main.storyboard */,
+				50D6C51923C2115000E66E37 /* AppDelegate.swift */,
+				50D625EE23C2170E00009D61 /* Model */,
+				50D625ED23C2170400009D61 /* Controllers */,
+				50D6C51B23C2117D00E66E37 /* Main.storyboard */,
 				50D6C50223C210ED00E66E37 /* Assets.xcassets */,
 				50D6C50423C210ED00E66E37 /* LaunchScreen.storyboard */,
 				50D6C50723C210ED00E66E37 /* Info.plist */,
+				50D6C51D23C2133700E66E37 /* GoogleService-Info.plist */,
 			);
 			path = DreamFire;
+			sourceTree = "<group>";
+		};
+		B77C26DEEBD01F80EE57A412 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7AA35E3B17EF82E46729A74B /* Pods-DreamFire.debug.xcconfig */,
+				D346C1345786237AA188F698 /* Pods-DreamFire.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		F48BB8991065C890F680E764 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AF63C52F34ECCEF02AD74F1F /* Pods_DreamFire.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +129,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 50D6C50A23C210ED00E66E37 /* Build configuration list for PBXNativeTarget "DreamFire" */;
 			buildPhases = (
+				8D224312A5A4735D1E537E83 /* [CP] Check Pods Manifest.lock */,
 				50D6C4F423C210EC00E66E37 /* Sources */,
 				50D6C4F523C210EC00E66E37 /* Frameworks */,
 				50D6C4F623C210EC00E66E37 /* Resources */,
+				15072F3CFEB1CDC2F3890B76 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -122,35 +182,75 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50D6C51C23C2117D00E66E37 /* Main.storyboard in Resources */,
+				50D6C51E23C2133700E66E37 /* GoogleService-Info.plist in Resources */,
 				50D6C50623C210ED00E66E37 /* LaunchScreen.storyboard in Resources */,
 				50D6C50323C210ED00E66E37 /* Assets.xcassets in Resources */,
-				50D6C50123C210EC00E66E37 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		15072F3CFEB1CDC2F3890B76 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DreamFire/Pods-DreamFire-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DreamFire/Pods-DreamFire-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DreamFire/Pods-DreamFire-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8D224312A5A4735D1E537E83 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DreamFire-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		50D6C4F423C210EC00E66E37 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				50D6C4FE23C210EC00E66E37 /* ViewController.swift in Sources */,
-				50D6C4FC23C210EC00E66E37 /* AppDelegate.swift in Sources */,
+				50D6C51A23C2115000E66E37 /* AppDelegate.swift in Sources */,
+				50D6C51623C2113200E66E37 /* CustomTableViewCell.swift in Sources */,
+				50D6C51423C2113200E66E37 /* FriendsViewController.swift in Sources */,
+				50D6C51823C2113200E66E37 /* LoginViewController.swift in Sources */,
+				50D6C51723C2113200E66E37 /* ProfileViewController.swift in Sources */,
+				50D6C50E23C2111F00E66E37 /* User.swift in Sources */,
+				50D6C51523C2113200E66E37 /* GroupViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		50D6C4FF23C210EC00E66E37 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				50D6C50023C210EC00E66E37 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		50D6C50423C210ED00E66E37 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -280,6 +380,7 @@
 		};
 		50D6C50B23C210ED00E66E37 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7AA35E3B17EF82E46729A74B /* Pods-DreamFire.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -298,6 +399,7 @@
 		};
 		50D6C50C23C210ED00E66E37 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D346C1345786237AA188F698 /* Pods-DreamFire.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

@@ -11,6 +11,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var loginTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var buttonOutlet: UIButton!
+    @IBOutlet weak var rBarButtonItemOutlet: UIBarButtonItem!
     
     var friend: AppUser?
     let ref = Database.database().reference().child("users")
@@ -47,6 +48,8 @@ class ProfileViewController: UIViewController {
     
     func setupRegistration(){
         buttonOutlet.setTitle("Registrate", for: .normal)
+       // rBarButtonItemOutlet.title = "Registrate"
+      //  navigationItem.title = "Registration"
     
     }
     

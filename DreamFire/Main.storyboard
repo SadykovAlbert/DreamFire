@@ -111,8 +111,8 @@
                     <connections>
                         <outlet property="emailTextField" destination="h6X-HB-5sB" id="ckr-fk-W89"/>
                         <outlet property="passwordTextField" destination="3cV-1G-uYm" id="sFN-oS-aIz"/>
-                        <segue destination="VZs-Pf-LEZ" kind="show" identifier="tasksSegue" id="R2r-hp-Odx"/>
                         <segue destination="PoR-hZ-ylW" kind="show" identifier="regSegue" id="Dro-UJ-oh9"/>
+                        <segue destination="KeE-wO-gGW" kind="show" identifier="tasksSegue" id="XHr-9m-onQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -142,7 +142,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="84.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PvE-7e-f8S">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stdimage" translatesAutoresizingMaskIntoConstraints="NO" id="PvE-7e-f8S">
                                                     <rect key="frame" x="15" y="7.5" width="70" height="70"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="70" id="7mD-89-cqI"/>
@@ -233,34 +233,34 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="38" translatesAutoresizingMaskIntoConstraints="NO" id="1qI-KC-iOD">
-                                <rect key="frame" x="10" y="108" width="394" height="685"/>
+                                <rect key="frame" x="10" y="108" width="394" height="734"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stdimage" translatesAutoresizingMaskIntoConstraints="NO" id="Gmn-4i-QsF">
-                                        <rect key="frame" x="40" y="0.0" width="314" height="203"/>
+                                        <rect key="frame" x="40" y="0.0" width="314" height="219.5"/>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ri6-jV-aFc">
-                                        <rect key="frame" x="10" y="241" width="374" height="203"/>
+                                        <rect key="frame" x="10" y="257.5" width="374" height="219"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="e4j-1q-hy6">
-                                                <rect key="frame" x="0.0" y="0.0" width="374" height="40.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qOe-2h-UT0">
-                                                <rect key="frame" x="0.0" y="50.5" width="374" height="40.5"/>
+                                                <rect key="frame" x="0.0" y="53.5" width="374" height="44"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Login" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QaN-Cq-UlG">
-                                                <rect key="frame" x="0.0" y="101" width="374" height="41"/>
+                                                <rect key="frame" x="0.0" y="107.5" width="374" height="44"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7oa-TM-pLT">
-                                                <rect key="frame" x="0.0" y="152" width="374" height="51"/>
+                                                <rect key="frame" x="0.0" y="161.5" width="374" height="57.5"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -268,7 +268,7 @@
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7x0-EN-nLb">
-                                        <rect key="frame" x="178.5" y="482" width="37" height="203"/>
+                                        <rect key="frame" x="178.5" y="514.5" width="37" height="219.5"/>
                                         <state key="normal" title="Done"/>
                                         <connections>
                                             <action selector="buttonTapped:" destination="PoR-hZ-ylW" eventType="touchUpInside" id="D7R-Vc-raV"/>
@@ -300,12 +300,12 @@
                         <outlet property="nameTextField" destination="e4j-1q-hy6" id="8Dd-2w-brg"/>
                         <outlet property="passwordTextField" destination="7oa-TM-pLT" id="30A-9G-vqU"/>
                         <outlet property="photoImage" destination="Gmn-4i-QsF" id="8AG-Kb-uHl"/>
-                        <segue destination="VZs-Pf-LEZ" kind="show" identifier="finishregSegue" id="CWe-Dx-EXm"/>
+                        <segue destination="KeE-wO-gGW" kind="show" identifier="finishregSegue" id="amW-38-d3Z"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r44-dV-UBE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="130" y="1104"/>
+            <point key="canvasLocation" x="400" y="1027"/>
         </scene>
         <!--New Group-->
         <scene sceneID="UTV-bF-8AB">
@@ -407,7 +407,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="evC-4x-whl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3084" y="1012.4437781109445"/>
+            <point key="canvasLocation" x="3043" y="1672"/>
         </scene>
         <!--Groups-->
         <scene sceneID="CWa-tR-qT4">
@@ -491,31 +491,13 @@
             </objects>
             <point key="canvasLocation" x="2813" y="116"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="AG2-UN-ptk">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="VZs-Pf-LEZ" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="yFC-Be-6h7">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="KeE-wO-gGW" kind="relationship" relationship="rootViewController" id="7MT-ac-enz"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="T49-Tg-QGc" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1224.8" y="111.99400299850076"/>
-        </scene>
     </scenes>
     <resources>
         <image name="stdimage" width="104.5" height="120.5"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="CWe-Dx-EXm"/>
+        <segue reference="amW-38-d3Z"/>
         <segue reference="QY6-wi-YRA"/>
-        <segue reference="hHU-1o-fgg"/>
+        <segue reference="Dro-UJ-oh9"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -61,7 +61,7 @@ class ProfileViewController: UIViewController {
             let userApp = AppUser(snapshot: snapshot)
     
             self.nameTextField.text = userApp.name
-            self.firstNameTextField.text = userApp.firstName
+            self.firstNameTextField.text = userApp.lastName
             self.loginTextField.text = userApp.email
             self.passwordTextField.text = userApp.password
         
@@ -79,7 +79,7 @@ class ProfileViewController: UIViewController {
         
         loginTextField.text = friend?.email
         nameTextField.text = friend?.name
-        firstNameTextField.text = friend?.firstName
+        firstNameTextField.text = friend?.lastName
         
         buttonOutlet.setTitle("Dismiss", for: .normal)
         
@@ -107,9 +107,9 @@ class ProfileViewController: UIViewController {
         guard let email = loginTextField.text,
             let password = passwordTextField.text,
             let name = nameTextField.text,
-            let firstName = firstNameTextField.text,
+            let lastName = firstNameTextField.text,
             name != "",
-            firstName != "",
+            lastName != "",
             email != "",
             password != "" else {
             return
@@ -124,7 +124,7 @@ class ProfileViewController: UIViewController {
             
             let ref2 = Database.database().reference(withPath: "users").child(String(user.uid))
             
-            let myUser = AppUser(user: user, name: name, firstName: firstName, password: password)
+            let myUser = AppUser(user: user, name: name, lastName: lastName, password: password)
      
             ref2.setValue(myUser.convertToDictionary())
             
@@ -141,7 +141,7 @@ class ProfileViewController: UIViewController {
         
         let userApp = AppUser(user: user,
                               name: name,
-                              firstName: firstname,
+                              lastName: firstname,
                               password: password)
         ref.child(user.uid).setValue(userApp.convertToDictionary())
     }

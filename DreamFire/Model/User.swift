@@ -5,15 +5,15 @@ import Firebase
 struct AppUser {
     
     var name: String = ""
-    var firstName: String = ""
+    var lastName: String = ""
     var password: String = ""
     let uid: String
     let email: String
     let ref: DatabaseReference?
     
-    init(user: User, name: String, firstName: String , password: String) {
+    init(user: User, name: String, lastName: String , password: String) {
         self.name = name
-        self.firstName = firstName
+        self.lastName = lastName
         self.password = password
         self.uid = user.uid
         self.email = user.email!
@@ -24,7 +24,7 @@ struct AppUser {
         let snapshotValue = snapshot.value as! [String: AnyObject]
 
         name = snapshotValue["name"] as! String
-        firstName = snapshotValue["firstname"] as! String
+        lastName = snapshotValue["lastname"] as! String
         email = snapshotValue["email"] as! String
         password = snapshotValue["password"] as! String
         uid = snapshotValue["uid"] as! String
@@ -32,6 +32,6 @@ struct AppUser {
     }
     
     func convertToDictionary() -> Any {
-        return ["name": name, "firstname": firstName, "password": password, "uid": uid, "email": email]
+        return ["name": name, "lastname": lastName, "password": password, "uid": uid, "email": email]
     }
 }

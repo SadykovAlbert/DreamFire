@@ -20,6 +20,7 @@
 		50D6C51A23C2115000E66E37 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D6C51923C2115000E66E37 /* AppDelegate.swift */; };
 		50D6C51C23C2117D00E66E37 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50D6C51B23C2117D00E66E37 /* Main.storyboard */; };
 		50D6C51E23C2133700E66E37 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 50D6C51D23C2133700E66E37 /* GoogleService-Info.plist */; };
+		50E7AC9823C37F69006A6D51 /* AddFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E7AC9723C37F69006A6D51 /* AddFriendViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		50D6C51923C2115000E66E37 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		50D6C51B23C2117D00E66E37 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		50D6C51D23C2133700E66E37 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		50E7AC9723C37F69006A6D51 /* AddFriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendViewController.swift; sourceTree = "<group>"; };
 		7AA35E3B17EF82E46729A74B /* Pods-DreamFire.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DreamFire.debug.xcconfig"; path = "Target Support Files/Pods-DreamFire/Pods-DreamFire.debug.xcconfig"; sourceTree = "<group>"; };
 		AF63C52F34ECCEF02AD74F1F /* Pods_DreamFire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DreamFire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D346C1345786237AA188F698 /* Pods-DreamFire.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DreamFire.release.xcconfig"; path = "Target Support Files/Pods-DreamFire/Pods-DreamFire.release.xcconfig"; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 				50D6C51323C2113200E66E37 /* LoginViewController.swift */,
 				50D6C51223C2113200E66E37 /* ProfileViewController.swift */,
 				50D625EF23C21B6400009D61 /* NewGroupViewController.swift */,
+				50E7AC9723C37F69006A6D51 /* AddFriendViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -244,6 +247,7 @@
 				50D6C51A23C2115000E66E37 /* AppDelegate.swift in Sources */,
 				50D6C51623C2113200E66E37 /* CustomTableViewCell.swift in Sources */,
 				50D6C51423C2113200E66E37 /* FriendsViewController.swift in Sources */,
+				50E7AC9823C37F69006A6D51 /* AddFriendViewController.swift in Sources */,
 				50D6C51823C2113200E66E37 /* LoginViewController.swift in Sources */,
 				50D6C51723C2113200E66E37 /* ProfileViewController.swift in Sources */,
 				50D625F023C21B6400009D61 /* NewGroupViewController.swift in Sources */,

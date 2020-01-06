@@ -56,7 +56,10 @@ class ProfileViewController: UIViewController {
     func setupProfile(){
         
         
-        buttonOutlet.setTitle("Save", for: .normal)
+        nameTextField.isEnabled = false
+        firstNameTextField.isEnabled = false
+        passwordTextField.isEnabled = false
+        buttonOutlet.setTitle("Edit", for: .normal)
         guard let user = Auth.auth().currentUser else {return}
         let ref3 = Database.database().reference(withPath: "users").child(String(user.uid))
         ref3.observe(.value) { (snapshot) in
@@ -67,8 +70,7 @@ class ProfileViewController: UIViewController {
             self.firstNameTextField.text = userApp.lastName
             self.loginTextField.text = userApp.email
             self.passwordTextField.text = userApp.password
-        
-
+            
         }
         
     }
@@ -84,8 +86,8 @@ class ProfileViewController: UIViewController {
         nameTextField.text = friend?.name
         firstNameTextField.text = friend?.lastName
         
-        buttonOutlet.setTitle("Dismiss", for: .normal)
-        
+        //buttonOutlet.setTitle("Dismiss", for: .normal)
+        buttonOutlet.isHidden = true
         
       
         
@@ -135,7 +137,18 @@ class ProfileViewController: UIViewController {
             self?.performSegue(withIdentifier: "finishregSegue", sender: nil)
         })
     }
+    
+    var isEdit = false
     func saveButtonTapped(){
+        if isEdit == false{
+            
+            nameTextField.isEnabled = true
+            firstNameTextField.isEnabled = true
+            passwordTextField.isEnabled = true
+            buttonOutlet.setTitle("save", for: .normal)
+            
+        }else if isEdit == true{
+        //
         guard let user = Auth.auth().currentUser else {return}
         guard let name = self.nameTextField.text,
             let firstname = self.firstNameTextField.text,
@@ -147,6 +160,13 @@ class ProfileViewController: UIViewController {
                               lastName: firstname,
                               password: password)
         ref.child(user.uid).setValue(userApp.convertToDictionary())
+        //
+            nameTextField.isEnabled = false
+            firstNameTextField.isEnabled = false
+            passwordTextField.isEnabled = false
+            buttonOutlet.setTitle("Edit", for: .normal)
+        }
+        isEdit = !isEdit
     }
     func addToFriendButtonTapped(){
         dismiss(animated: true, completion: nil)

@@ -17,7 +17,9 @@ class FriendsViewController: UIViewController,UITableViewDelegate,UITableViewDat
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomTableViewCell
         
         let name = friends[indexPath.row].name
+        let lastName = friends[indexPath.row].lastName
         cell.nameLabel.text = name
+        cell.lastNameLabel.text = lastName
         return cell
     }
     
@@ -26,22 +28,23 @@ class FriendsViewController: UIViewController,UITableViewDelegate,UITableViewDat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("###################")
+        //print("###################")
         
         friends = []
         guard let user = Auth.auth().currentUser else {return}
         
         ref.child(user.uid).child("friends").observe(.value) { (snapshot) in
-            print("print")
+            //print("print")
             var _friends:[AppUser] = []
 
-            print(snapshot.children)
+            //print(snapshot.children)
             
             
             if let snapshots = snapshot.children.allObjects as? [DataSnapshot]{
                 for snap in snapshots {
-                    print("print2")
-                    print(snap)
+                    //print("print2")
+                    //print(snap)
+                    
                     let user = AppUser(snapshot: snap)
                     _friends.append(user)
                 }
@@ -51,7 +54,7 @@ class FriendsViewController: UIViewController,UITableViewDelegate,UITableViewDat
         }
         
         
-        print("====================")
+        //print("====================")
     }
     
      func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

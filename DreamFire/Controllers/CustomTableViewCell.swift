@@ -5,6 +5,7 @@ class CustomTableViewCell: UITableViewCell {
 
     @IBOutlet weak var imageOutlet: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var lastNameLabel: UILabel!
     
     
     

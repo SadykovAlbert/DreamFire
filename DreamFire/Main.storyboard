@@ -198,7 +198,7 @@
                     <navigationItem key="navigationItem" id="kbj-CF-fi5">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="9JX-4a-A7M">
                             <connections>
-                                <segue destination="CMa-9g-Ttg" kind="show" id="i7h-u4-KpA"/>
+                                <segue destination="CMa-9g-Ttg" kind="show" identifier="newFriendSegue" id="i7h-u4-KpA"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -387,8 +387,8 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="36" translatesAutoresizingMaskIntoConstraints="NO" id="DCn-TU-bkH">
                                 <rect key="frame" x="30" y="98" width="354" height="705"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ewy-3G-uTr">
-                                        <rect key="frame" x="152" y="0.0" width="50" height="128"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stdimage" translatesAutoresizingMaskIntoConstraints="NO" id="ewy-3G-uTr">
+                                        <rect key="frame" x="125" y="0.0" width="104.5" height="128"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="128" id="x9f-dt-LWJ"/>
                                         </constraints>
@@ -419,15 +419,12 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="-10" translatesAutoresizingMaskIntoConstraints="NO" id="rSa-gM-j4C">
                                         <rect key="frame" x="0.0" y="306" width="354" height="30"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add friend" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="S9M-1r-ALh">
-                                                <rect key="frame" x="0.0" y="0.0" width="283.5" height="30"/>
-                                                <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lHi-g1-zm2">
-                                                <rect key="frame" x="273.5" y="0.0" width="80.5" height="30"/>
-                                                <state key="normal" title="ADD"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="354" height="30"/>
+                                                <state key="normal" title="Delete group"/>
+                                                <connections>
+                                                    <action selector="buttonPressed:" destination="vhH-o5-JIR" eventType="touchUpInside" id="927-DF-JST"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -435,7 +432,7 @@
                                         <rect key="frame" x="0.0" y="372" width="354" height="333"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="6FR-ak-3IR">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="6FR-ak-3IR" customClass="CustomTableViewCell" customModule="DreamFire" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="354" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6FR-ak-3IR" id="JMI-Ph-mpe">
@@ -444,6 +441,10 @@
                                                 </tableViewCellContentView>
                                             </tableViewCell>
                                         </prototypes>
+                                        <connections>
+                                            <outlet property="dataSource" destination="vhH-o5-JIR" id="Cjo-uz-Vt8"/>
+                                            <outlet property="delegate" destination="vhH-o5-JIR" id="OaM-UG-vWc"/>
+                                        </connections>
                                     </tableView>
                                 </subviews>
                                 <constraints>
@@ -465,12 +466,19 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="nfT-bA-CzC">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="9Lj-lO-SEL"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="9Lj-lO-SEL">
+                            <connections>
+                                <action selector="saveBarButtonPressed:" destination="vhH-o5-JIR" id="4r2-YD-gAX"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="buttonOutlet" destination="lHi-g1-zm2" id="J3X-eh-E3J"/>
                         <outlet property="descriptionTextField" destination="Tab-Y3-J15" id="yCt-7a-OBO"/>
                         <outlet property="nameTextField" destination="bV3-4W-8BQ" id="Wry-CM-zNw"/>
                         <outlet property="nicknameTextField" destination="2pr-eW-eBK" id="mjR-WL-MqT"/>
+                        <outlet property="saveBarButtonOutlet" destination="9Lj-lO-SEL" id="7nB-yx-pwS"/>
+                        <outlet property="tableViewOutlet" destination="EWY-Wk-uZr" id="QKE-Y8-yD7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="evC-4x-whl" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -3,11 +3,13 @@ import UIKit
 import Firebase
 
 class FriendsViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
-    //@IBOutlet weak var textField: UITextField!
+    
     @IBOutlet weak var tableView: UITableView!
     
     
     let ref = Database.database().reference().child("users")
+    var friends = [AppUser]()
+    var mails = [String]()
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return  friends.count
@@ -23,39 +25,69 @@ class FriendsViewController: UIViewController,UITableViewDelegate,UITableViewDat
         return cell
     }
     
-
-    var friends = [AppUser]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //print("###################")
+        
         
         friends = []
+        mails = []
         guard let user = Auth.auth().currentUser else {return}
         
-        ref.child(user.uid).child("friends").observe(.value) { (snapshot) in
-            //print("print")
-            var _friends:[AppUser] = []
-
-            //print(snapshot.children)
+        //===
+        ref.child(user.uid).child("friendsmail").observe(.value) { (snapshot) in
+            
+            var _mails:[String] = []
+            
             
             
             if let snapshots = snapshot.children.allObjects as? [DataSnapshot]{
                 for snap in snapshots {
-                    //print("print2")
-                    //print(snap)
                     
-                    let user = AppUser(snapshot: snap)
-                    _friends.append(user)
+                    guard let hDict = snap.value as? [String:String] else {return}
+                    guard let mail = [String](hDict.values).first else {return}
+
+                    
+                    _mails.append(mail)
+                    print("mail: \(mail)")
                 }
             }
-            self.friends = _friends
-            self.tableView.reloadData()
+            self.mails = _mails
+           
+        }
+        //==
+
+        //=========================
+        let fbRef = Database.database().reference().child("users")
+        fbRef.observe(.value) { (snapshot) in
+            
+            print("snap: \(snapshot)")
+            
+                        var _friends:[AppUser] = []
+            
+                        if let snapshots = snapshot.children.allObjects as? [DataSnapshot]{
+                            for snap in snapshots {
+            
+                                let user = AppUser(snapshot: snap)
+                                for mail in self.mails{
+                                    if user.email == mail{
+                                        _friends.append(user)
+                                    }
+                                }
+                                
+                            }
+                        }
+                        self.friends = _friends
+                        self.tableView.reloadData()
+            
         }
         
         
-        //print("====================")
+        //=========================
+        
     }
+    
+    
     
      func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 85
@@ -68,67 +100,21 @@ class FriendsViewController: UIViewController,UITableViewDelegate,UITableViewDat
             let friend = friends[indexPath.row]
             vc.friend = friend
             vc.segueChoise = .friend
+            
         }
+        else if segue.identifier == "newFriendSegue"{
+            let vc = segue.destination as! AddFriendViewController
+            vc.friends = friends
+        }
+    
     }
     
-
-//    @IBAction func buttonPressed(_ sender: UIButton) {
-//
-//        var flag = false
-//
-//        guard var textField = textField.text, textField != "" else {return}
-//        self.textField.text = ""
-//        let ref = Database.database().reference().child("users")
-//
-//            ref.observe(.value) { (snapshot) in //===========
-//                let mas = snapshot.valueInExportFormat() as! [String:AnyObject]
-//
-//                for (_,j) in mas{
-//                    let mas2 = j as! [String:AnyObject]
-//
-//                    guard let email = mas2["email"] as? String else {return}
-//                    if (textField == email){
-//                        textField = ""
-//                        flag = true
-//                        guard let uid = mas2["uid"] as? String else {return}
-//                        self.addToFriendFB(uid: uid)
-//
-//                    }
-//                    if (flag == true){break}
-//
-//                }
-//
-//            }//==================
-//
-//    }
     
-//    func addToFriendFB(uid: String){
-//
-//        guard let user = Auth.auth().currentUser else {return}
-//
-//        let friendRef = ref.child(uid)
-//        let ourRef = self.ref.child(user.uid).child("friends").childByAutoId()
-//
-//
-//
-//        friendRef.observe(.value) { (snapshot) in
-//            let friendUser = AppUser(snapshot: snapshot)
-//            ourRef.setValue(friendUser.convertToDictionary())
-//        }
-//        //
-//
-//
-//
-//
-//
-//         let ourRef1 = self.ref.child(user.uid)
-//           let friendRef1 = self.ref.child(uid).child("friends").childByAutoId()
-//
-//        ourRef1.observe(.value) { (snapshot) in
-//            let ourUser = AppUser(snapshot: snapshot)
-//            friendRef1.setValue(ourUser.convertToDictionary())
-//        }
-//
-//
-//    }
+    func getMails(){
+        for friend in friends{
+            let mail = friend.email
+            mails.append(mail)
+        }
+    }
+
 }

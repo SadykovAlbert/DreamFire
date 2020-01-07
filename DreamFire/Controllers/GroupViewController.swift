@@ -22,6 +22,16 @@ class GroupViewController: UIViewController, UITableViewDelegate,UITableViewData
 
         // Do any additional setup after loading the view.
     }
+    @IBAction override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "createGroupSegue" {
+            guard let dvc = segue.destination as? NewGroupViewController else {return}
+            dvc.segueChoise = .registrationGroup
+        }
+        else if segue.identifier == "showDetailGroup" {
+            guard let dvc = segue.destination as? NewGroupViewController else {return}
+            dvc.segueChoise = .profileGroup
+        }
+    }
     
 
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {

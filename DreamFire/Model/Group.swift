@@ -16,15 +16,15 @@ struct AppGroup {
     var description: String = ""
     var nickname: String = ""
     var admin: String = ""
-    //let uid: String?
+    var uid: String = ""
     let ref: DatabaseReference?
 
-    init(name: String, description: String , nickname: String, admin: String) {
+    init(name: String, description: String , nickname: String, admin: String, uid: String) {
         self.name = name
         self.description = description
         self.nickname = nickname
         self.admin = admin
-        //self.uid = nil
+        self.uid = uid
         self.ref = nil
     }
 
@@ -35,11 +35,11 @@ struct AppGroup {
         description = snapshotValue["description"] as! String
         nickname = snapshotValue["nickname"] as! String
         admin = snapshotValue["admin"] as! String
-        //uid = snapshotValue["uid"] as! String
+        uid = snapshotValue["uid"] as! String
         ref = snapshot.ref
     }
 
     func convertToDictionary() -> Any {
-        return ["name": name, "description": description, "nickname": nickname, "admin": admin]
+        return ["name": name, "description": description, "nickname": nickname, "admin": admin, "uid": uid]
     }
 }

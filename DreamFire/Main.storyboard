@@ -502,7 +502,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="nfT-bA-CzC">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="9Lj-lO-SEL">
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="9Lj-lO-SEL">
                             <connections>
                                 <action selector="saveBarButtonPressed:" destination="vhH-o5-JIR" id="4r2-YD-gAX"/>
                             </connections>
@@ -515,6 +515,7 @@
                         <outlet property="nicknameTextField" destination="2pr-eW-eBK" id="mjR-WL-MqT"/>
                         <outlet property="saveBarButtonOutlet" destination="9Lj-lO-SEL" id="7nB-yx-pwS"/>
                         <outlet property="tableViewOutlet" destination="EWY-Wk-uZr" id="QKE-Y8-yD7"/>
+                        <segue destination="CMa-9g-Ttg" kind="show" identifier="addUsersTOGroupSegue" id="yCO-dO-uZ7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="evC-4x-whl" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -678,6 +679,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="amW-38-d3Z"/>
         <segue reference="P6V-Gt-20m"/>
+        <segue reference="yCO-dO-uZ7"/>
         <segue reference="gup-0V-U5D"/>
     </inferredMetricsTieBreakers>
 </document>

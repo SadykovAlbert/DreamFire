@@ -18,11 +18,20 @@ class AddFriendViewController: UIViewController {
     var mails = [String]()
     let ref = Database.database().reference().child("users")
     let myMail = Auth.auth().currentUser?.email
+    //var groupUid:String?
+    var group:AppGroup?
+    
+    enum whichSegue {
+        case addNewFriend
+        case addNewUserToGroup
+    }
+    
+    var segueChoise: whichSegue = .addNewUserToGroup
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        getMails()
+        
         
         
         warningLabel.alpha = 0
@@ -41,6 +50,75 @@ class AddFriendViewController: UIViewController {
     
     @IBAction func findButtonPressed(_ sender: UIButton) {
         
+        switch segueChoise {
+        case .addNewFriend:
+            addToFriend()
+        case .addNewUserToGroup:
+            addToGroup()
+        }
+//        getMails()
+//        guard var textField = mailTextField.text, textField != "" else {return}
+//        self.mailTextField.text = ""
+//        //let ref = Database.database().reference().child("users")
+//
+//        if textField == myMail{
+//            displayWarningLabel(withText: "You can not add yourself to Friends")
+//            return
+//        }
+//        for mail in mails{
+//            if textField == mail{
+//                displayWarningLabel(withText: "This user already your Friend")
+//                return
+//            }
+//        }
+//
+//        let demoRef1 = Database.database().reference().child("users")
+//        demoRef1
+//            .queryOrdered(byChild: "email")
+//            .queryEqual(toValue: textField)
+//            .observe(.value) { (dataSnapshot) in
+//
+//
+//
+//                let dict = dataSnapshot.value as! [String:AnyObject]
+//                var uid:String = ""
+//                var dict2: [String:AnyObject] = [:]
+//                for (i,j) in dict{
+//
+//                    uid = i
+//
+//                    guard let dicthelp = j as? [String:AnyObject] else {return}
+//                    dict2 = dicthelp
+//                }
+//                let mail = dict2["email"] as! String
+//                print("dict: \(dict2["email"]!)")
+//                print("uid: \(uid)")
+//                guard textField != "" else {return}
+//                self.addToFriendByMail(mail: mail, uid: uid)
+//                textField = ""
+//                self.navigationController?.popViewController(animated: true)
+//
+//
+//        }
+//
+//
+//
+//        /*----
+//                let myUid = uid.first//"DbhQcCI4PfPDkLTiErFVvoq2gbu2"
+//                print(dataSnapshot.childSnapshot(forPath: "\(myUid!)/friends").children.allObjects)
+//
+//                //demoRef.child(myUid).child("friends").removeValue()
+//
+//        }-----*/
+////        demoRef.child("DbhQcCI4PfPDkLTiErFVvoq2gbu2").child("friends").removeValue()
+//
+//        displayWarningLabel(withText: "No such user")
+
+    }
+    
+    func addToFriend(){
+        
+        getMails()
         guard var textField = mailTextField.text, textField != "" else {return}
         self.mailTextField.text = ""
         //let ref = Database.database().reference().child("users")
@@ -61,11 +139,7 @@ class AddFriendViewController: UIViewController {
             .queryOrdered(byChild: "email")
             .queryEqual(toValue: textField)
             .observe(.value) { (dataSnapshot) in
-
                 
-                print("1st")
-                print(dataSnapshot)
-                print("2nd")
                 
                 
                 let dict = dataSnapshot.value as! [String:AnyObject]
@@ -74,7 +148,7 @@ class AddFriendViewController: UIViewController {
                 for (i,j) in dict{
                     
                     uid = i
-
+                    
                     guard let dicthelp = j as? [String:AnyObject] else {return}
                     dict2 = dicthelp
                 }
@@ -86,23 +160,74 @@ class AddFriendViewController: UIViewController {
                 textField = ""
                 self.navigationController?.popViewController(animated: true)
                 
-
+                
         }
-       
+        
         
         
         /*----
-                let myUid = uid.first//"DbhQcCI4PfPDkLTiErFVvoq2gbu2"
-                print(dataSnapshot.childSnapshot(forPath: "\(myUid!)/friends").children.allObjects)
+         let myUid = uid.first//"DbhQcCI4PfPDkLTiErFVvoq2gbu2"
+         print(dataSnapshot.childSnapshot(forPath: "\(myUid!)/friends").children.allObjects)
          
-                //demoRef.child(myUid).child("friends").removeValue()
- 
-        }-----*/
-//        demoRef.child("DbhQcCI4PfPDkLTiErFVvoq2gbu2").child("friends").removeValue()
+         //demoRef.child(myUid).child("friends").removeValue()
+         
+         }-----*/
+        //        demoRef.child("DbhQcCI4PfPDkLTiErFVvoq2gbu2").child("friends").removeValue()
         
         displayWarningLabel(withText: "No such user")
-
+        
     }
+    func addToGroup(){
+        
+        guard let textField = mailTextField.text, textField != "" else {return}
+        self.mailTextField.text = ""
+        
+        guard let uid = group?.uid else {return}
+        let groupRef = Database.database().reference().child("groups").child(uid).child("groupusers")
+        groupRef.observe(.value) { (snapshot) in
+            
+            var flag = false
+            //var userUid = ""
+            //
+            if let snapshots = snapshot.children.allObjects as? [DataSnapshot]{
+                for snap in snapshots {
+                    
+//                    let user = AppUser(snapshot: snap)
+//                    if user.email == textField{
+//                        flag = true;
+//                        userUid = user.uid
+
+                    guard let dict = snap.value as? [String:AnyObject] else {return}
+                    
+                    guard let mail = dict["email"] as? String else {return}
+                    //let userUid =
+                    if mail == textField{
+                        flag = true;
+                        userUid = user.uid
+                    }
+                    
+                }
+            }
+            //
+            if flag == true{
+                self.displayWarningLabel(withText: "Such User already exist")
+            }else{
+                
+                let addToGroupRef = Database.database().reference()
+                    .child("groups").child(uid).child("groupusers").childByAutoId()
+                addToGroupRef.setValue(["email":textField])
+                
+                let userRef = Database.database().reference()
+                    .child("users").child(userUid).child("groups").childByAutoId()
+                guard let nick = self.group?.nickname else {return}
+                userRef.setValue(["nickname": nick])
+                
+            }
+            
+        }
+        
+    }
+
     
     func addToFriendByMail(mail:String, uid:String){
         guard let user = Auth.auth().currentUser else {return}

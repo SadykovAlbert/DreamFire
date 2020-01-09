@@ -51,6 +51,8 @@ class NewGroupViewController: UIViewController,UITableViewDelegate,UITableViewDa
         nameTextField.text = ""
         descriptionTextField.text = ""
         nicknameTextField.text = ""
+        saveBarButtonOutlet.title = "Save"
+        
         //
     }
     func setupProfile(){
@@ -59,8 +61,8 @@ class NewGroupViewController: UIViewController,UITableViewDelegate,UITableViewDa
         nameTextField.isEnabled = false
         descriptionTextField.isEnabled = false
         nicknameTextField.isEnabled = false
-        saveBarButtonOutlet.isEnabled = false
-        saveBarButtonOutlet.title = ""
+        saveBarButtonOutlet.isEnabled = true//?
+        saveBarButtonOutlet.title = "Add Users"
         
         nameTextField.text = group?.name
         descriptionTextField.text = group?.description
@@ -86,18 +88,59 @@ class NewGroupViewController: UIViewController,UITableViewDelegate,UITableViewDa
     
     @IBAction func saveBarButtonPressed(_ sender: UIBarButtonItem) {
         
+//        guard let name = nameTextField.text,
+//        let  description = descriptionTextField.text,
+//        let nickname = nicknameTextField.text,
+//        name != "",
+//        description != "",
+//        nickname != ""
+//            else {return}
+//
+//        nameTextField.text = ""
+//        descriptionTextField.text = ""
+//        nicknameTextField.text = ""
+//
+//
+//        guard let user = Auth.auth().currentUser else {return}
+//        guard let userMail = user.email else {return}
+//
+//        let groupRef = Database.database().reference().child("groups").childByAutoId()
+//
+//        guard let uid = groupRef.key else {return}
+//
+//
+//
+//        let group = AppGroup(name: name, description: description, nickname: nickname, admin: userMail, uid: uid)
+//        groupRef.setValue(group.convertToDictionary())
+//        groupRef.child("groupusers").childByAutoId().setValue(["email" : userMail])
+//
+//        let myGroupRef = Database.database().reference().child("users").child(user.uid).child("groups").childByAutoId()
+//        myGroupRef.setValue(["nickname":group.nickname])
+//        self.navigationController?.popViewController(animated: true)
+        
+        switch segueChoise {
+        case .profileGroup:
+            addButtonAction()
+        case .registrationGroup:
+            saveButtonAction()
+        }
+        
+    }
+    func saveButtonAction(){
+        
+        //
         guard let name = nameTextField.text,
-        let  description = descriptionTextField.text,
-        let nickname = nicknameTextField.text,
-        name != "",
-        description != "",
-        nickname != ""
+            let  description = descriptionTextField.text,
+            let nickname = nicknameTextField.text,
+            name != "",
+            description != "",
+            nickname != ""
             else {return}
         
         nameTextField.text = ""
         descriptionTextField.text = ""
         nicknameTextField.text = ""
-
+        
         
         guard let user = Auth.auth().currentUser else {return}
         guard let userMail = user.email else {return}
@@ -115,10 +158,28 @@ class NewGroupViewController: UIViewController,UITableViewDelegate,UITableViewDa
         let myGroupRef = Database.database().reference().child("users").child(user.uid).child("groups").childByAutoId()
         myGroupRef.setValue(["nickname":group.nickname])
         self.navigationController?.popViewController(animated: true)
+        //
         
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "addUsersTOGroupSegue"{
+            let vc = segue.destination as! AddFriendViewController
+            vc.segueChoise = .addNewUserToGroup
+            //vc.groupUid = groupUid
+            vc.group = group
+        }
+    }
+    
+    func addButtonAction(){
+        
+        performSegue(withIdentifier: "addUsersTOGroupSegue", sender: nil)
+        
+    }
+    
+    
     @IBAction func buttonPressed(_ sender: UIButton) {
+        //DELETE GROUP
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -164,7 +225,7 @@ class NewGroupViewController: UIViewController,UITableViewDelegate,UITableViewDa
                 }
             }
             self.mails = _mails
-            print("1observeEND")
+            
         }
     
         //================

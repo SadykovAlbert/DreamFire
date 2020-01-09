@@ -21,6 +21,7 @@ class NewGroupViewController: UIViewController,UITableViewDelegate,UITableViewDa
     
     var group:AppGroup?
     
+    var masFriends = [AppUser]()
     var groupUid: String?
     var groupUsers = [AppUser]()
 
@@ -70,19 +71,102 @@ class NewGroupViewController: UIViewController,UITableViewDelegate,UITableViewDa
         
         
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+            self.displayListOfUsers()
+        
+        
+        
+        
+    }
+//    override func viewWillDisappear(_ animated: Bool) {
+//        super.viewWillDisappear(animated)
+//        //displayListOfUsers()
+//    }
+//    override func viewDidDisappear(_ animated: Bool) {
+//        super.viewDidDisappear(animated)
+//        //displayListOfUsers()
+//    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        displayListOfUsers()
+        //displayListOfUsers()
+        //generateMasFriends
         
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
+        //displayListOfUsers()
+        generateMasFriends()
         setupUI()
       
+        
+    }
+    func generateMasFriends(){
+        
+        guard let myUid = Auth.auth().currentUser?.uid else {return}
+        let userFriendsRef = Database.database().reference().child("users").child(myUid).child("friendsmail")
+        userFriendsRef.observe(.value) { (snapshot) in
+            
+            //
+            var _mails = [String]()
+            //print("Snapshot is : \(snapshot)")
+            
+            
+            //
+//            guard let snaps = snapshot.children.allObjects as? [DataSnapshot] else {return}
+//            guard let mymas = snaps as? [AppUser]
+            //
+            
+//            guard let massivFriends = snapshot as? [Int:AppUser] else {return}
+//            print("mas: \(massivFriends)")
+//            guard let friend = snapshot.value as? AppUser else {print("error AS1"); return}
+            
+            //_friends.append(friend)
+            
+            //print("/////=========")
+            if let snapshots = snapshot.children.allObjects as? [DataSnapshot]{
+                for snap in snapshots {
+                    //print("snap is: \(snap)")
+                    //let friend = AppUser(snapshot: snap)
+                    guard let dict = snap.value as? [String:String] else {return}
+                    guard let mail = dict["email"] else {return}
+                    _mails.append(mail)
+
+                }
+            }
+         
+            self.mails = _mails
+            //print("masMails: \(self.mails)")
+            //
+        }
+        
+        let usersRef = Database.database().reference().child("users")
+        usersRef.observe(.value) { (snapshot) in
+            
+            var _friends = [AppUser]()
+            if let snapshots = snapshot.children.allObjects as? [DataSnapshot]{
+                
+                for snap in snapshots{
+                    let user = AppUser(snapshot: snap)
+                    for mail in self.mails{
+                        if mail == user.email{
+                            _friends.append(user)
+                            break
+                        }
+                    }
+                }
+                
+            }
+            self.masFriends = _friends
+            print("friends: \(self.masFriends)")
+            print("//////============")
+        }
         
     }
     
@@ -153,7 +237,7 @@ class NewGroupViewController: UIViewController,UITableViewDelegate,UITableViewDa
         
         let group = AppGroup(name: name, description: description, nickname: nickname, admin: userMail, uid: uid)
         groupRef.setValue(group.convertToDictionary())
-        groupRef.child("groupusers").childByAutoId().setValue(["email" : userMail])
+        groupRef.child("groupusers").childByAutoId().setValue(["email" : userMail,"uid":user.uid])
         
         let myGroupRef = Database.database().reference().child("users").child(user.uid).child("groups").childByAutoId()
         myGroupRef.setValue(["nickname":group.nickname])
@@ -168,6 +252,7 @@ class NewGroupViewController: UIViewController,UITableViewDelegate,UITableViewDa
             vc.segueChoise = .addNewUserToGroup
             //vc.groupUid = groupUid
             vc.group = group
+            vc.friends = masFriends
         }
     }
     
@@ -254,6 +339,8 @@ class NewGroupViewController: UIViewController,UITableViewDelegate,UITableViewDa
             self.tableViewOutlet.reloadData()
 
             
+            print("VDA ========")
+            print("count: \(self.groupUsers.count)")
         }
         //======
         

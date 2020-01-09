@@ -21,6 +21,7 @@ class GroupViewController: UIViewController, UITableViewDelegate,UITableViewData
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellGroup", for: indexPath) as! CustomTableViewCell
+        print("GROUP COUNT:  \(groups.count)")
         let name = groups[indexPath.row].name
         let nickname = groups[indexPath.row].nickname
         cell.nameLabel.text = name
@@ -56,8 +57,12 @@ class GroupViewController: UIViewController, UITableViewDelegate,UITableViewData
             if let snapshots = snapshot.children.allObjects as? [DataSnapshot]{
                 for snap in snapshots {
                     
-                    guard let hDict = snap.value as? [String:String] else {return}
-                    guard let nickname = [String](hDict.values).first else {return}
+                    guard let hDict = snap.value as? [String:AnyObject] else {return}
+                    guard let nickname = hDict["nickname"] as? String else {return}
+                    //guard let uid = hDict["uid"] as? String else {return}
+
+
+                    //guard let nickname = [String](hDict.values).first else {return}
                     
                     //print("1: \(nickname)")
                     

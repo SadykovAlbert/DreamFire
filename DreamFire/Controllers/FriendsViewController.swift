@@ -68,6 +68,7 @@ class FriendsViewController: UIViewController,UITableViewDelegate,UITableViewDat
                         if let snapshots = snapshot.children.allObjects as? [DataSnapshot]{
                             for snap in snapshots {
             
+                                //print("SNAP-----: \(snap)")
                                 let user = AppUser(snapshot: snap)
                                 for mail in self.mails{
                                     if user.email == mail{

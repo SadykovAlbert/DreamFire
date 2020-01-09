@@ -106,6 +106,7 @@ class FriendsViewController: UIViewController,UITableViewDelegate,UITableViewDat
         else if segue.identifier == "newFriendSegue"{
             let vc = segue.destination as! AddFriendViewController
             vc.friends = friends
+            vc.segueChoise = .addNewFriend
         }
     
     }

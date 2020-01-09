@@ -53,8 +53,10 @@ class AddFriendViewController: UIViewController {
         switch segueChoise {
         case .addNewFriend:
             addToFriend()
+            print("addToFriendSC")
         case .addNewUserToGroup:
             addToGroup()
+            print("addToGroupSC")
         }
         //        getMails()
         //        guard var textField = mailTextField.text, textField != "" else {return}
@@ -117,7 +119,7 @@ class AddFriendViewController: UIViewController {
     }
     
     func addToFriend(){
-        
+        print("In Func addToFriend")
         getMails()
         guard var textField = mailTextField.text, textField != "" else {return}
         self.mailTextField.text = ""
@@ -178,7 +180,7 @@ class AddFriendViewController: UIViewController {
         
     }
     func addToGroup(){
-        
+        print("In Func addToGroup")
         guard let textField = mailTextField.text, textField != "" else {return}
         self.mailTextField.text = ""
         

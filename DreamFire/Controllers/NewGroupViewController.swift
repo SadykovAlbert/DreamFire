@@ -77,24 +77,28 @@ class NewGroupViewController: UIViewController,UITableViewDelegate,UITableViewDa
         
             self.displayListOfUsers()
         
+        //print("mailsInVDA: \(mails)")
         
         
         
     }
-//    override func viewWillDisappear(_ animated: Bool) {
-//        super.viewWillDisappear(animated)
-//        //displayListOfUsers()
-//    }
-//    override func viewDidDisappear(_ animated: Bool) {
-//        super.viewDidDisappear(animated)
-//        //displayListOfUsers()
-//    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        //displayListOfUsers()
+        //print("VWD: \(mails)")
+    }
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        //displayListOfUsers()
+        //print("VDD: \(mails)")
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         //displayListOfUsers()
         //generateMasFriends
+        //print("mailsInVWA: \(mails)")
         
     }
     
@@ -105,6 +109,7 @@ class NewGroupViewController: UIViewController,UITableViewDelegate,UITableViewDa
         generateMasFriends()
         setupUI()
       
+        //print("mailsInVDL: \(mails)")
         
     }
     func generateMasFriends(){
@@ -288,31 +293,34 @@ class NewGroupViewController: UIViewController,UITableViewDelegate,UITableViewDa
     
     func displayListOfUsers(){
         
+        print("mailsINDisplaList: \(mails)")
+
+        //========
 
         guard let uid = groupUid else {return}
         let ref = Database.database().reference().child("groups").child(uid).child("groupusers")
-        //========
+
         ref.observe(.value) { (snapshot) in
-            
+
             
             var _mails:[String] = []
 
             if let snapshots = snapshot.children.allObjects as? [DataSnapshot]{
                 for snap in snapshots {
 
-                    
 
-                    guard let maildict = snap.value as? [String : String] else {return}
-                    guard let mail = maildict.values.first else {return}
-               
+
+                    guard let maildict = snap.value as? [String : AnyObject] else {return}
+                    guard let mail = maildict["email"] as? String else {return}
+
                     _mails.append(mail)
 
                 }
             }
             self.mails = _mails
-            
+
         }
-    
+
         //================
         
         let usersRef = Database.database().reference().child("users")
@@ -339,8 +347,8 @@ class NewGroupViewController: UIViewController,UITableViewDelegate,UITableViewDa
             self.tableViewOutlet.reloadData()
 
             
-            print("VDA ========")
-            print("count: \(self.groupUsers.count)")
+            //print("VDA ========")
+            //print("count: \(self.groupUsers.count)")
         }
         //======
         

@@ -35,6 +35,12 @@ class GroupViewController: UIViewController, UITableViewDelegate,UITableViewData
         return 85
     }
     
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        displayListOfGroups()
+    }
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         //ref.removeAllObservers()
@@ -43,66 +49,69 @@ class GroupViewController: UIViewController, UITableViewDelegate,UITableViewData
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        groups = []
-        nicknames = []
-        guard let user = Auth.auth().currentUser else {return}
+        /////////
         
-        
-        
-        //===
-        ref.child(user.uid).child("groups").observe(.value) { (snapshot) in
-            
-            var _nicknames:[String] = []
-            
-            if let snapshots = snapshot.children.allObjects as? [DataSnapshot]{
-                for snap in snapshots {
-                    
-                    guard let hDict = snap.value as? [String:AnyObject] else {return}
-                    guard let nickname = hDict["nickname"] as? String else {return}
-                    //guard let uid = hDict["uid"] as? String else {return}
-
-
-                    //guard let nickname = [String](hDict.values).first else {return}
-                    
-                    //print("1: \(nickname)")
-                    
-                    _nicknames.append(nickname)
-                    //print("nicknames: \(nickname)")
-                }
-            }
-            self.nicknames = _nicknames
-            //self.tableView.reloadData()
-            
-            //print("2 nicks: \(_nicknames)")
-            
-            
-        }
-        
-        fbRef.observe(.value) { (snapshot) in
-            
-            var _groups:[AppGroup] = []
-            
-            //print("BEGIN")
-            if let snapshots = snapshot.children.allObjects as? [DataSnapshot]{
-                for snap in snapshots {
-                    //print("IN SNAPSHOTS")
-                    
-                    let group = AppGroup(snapshot: snap)
-                    for nickname in self.nicknames{
-                        //print("IN ARRAY ")
-                        if group.nickname == nickname{
-                            //print("3: \(nickname)")
-                            _groups.append(group)
-                        }
-                    }
-                    
-                }
-            }
-            self.groups = _groups
-            self.tableView.reloadData()
-            
-            //print("END")
-        }
+//        groups = []
+//        nicknames = []
+//        guard let user = Auth.auth().currentUser else {return}
+//
+//
+//
+//        //===
+//        ref.child(user.uid).child("groups").observe(.value) { (snapshot) in
+//
+//            var _nicknames:[String] = []
+//
+//            if let snapshots = snapshot.children.allObjects as? [DataSnapshot]{
+//                for snap in snapshots {
+//
+//                    guard let hDict = snap.value as? [String:AnyObject] else {return}
+//                    guard let nickname = hDict["nickname"] as? String else {return}
+//                    //guard let uid = hDict["uid"] as? String else {return}
+//
+//
+//                    //guard let nickname = [String](hDict.values).first else {return}
+//
+//                    //print("1: \(nickname)")
+//
+//                    _nicknames.append(nickname)
+//                    //print("nicknames: \(nickname)")
+//                }
+//            }
+//            self.nicknames = _nicknames
+//            //self.tableView.reloadData()
+//
+//            //print("2 nicks: \(_nicknames)")
+//
+//
+//        }
+//
+//        fbRef.observe(.value) { (snapshot) in
+//
+//            var _groups:[AppGroup] = []
+//
+//            //print("BEGIN")
+//            if let snapshots = snapshot.children.allObjects as? [DataSnapshot]{
+//                for snap in snapshots {
+//                    //print("IN SNAPSHOTS")
+//
+//                    let group = AppGroup(snapshot: snap)
+//                    for nickname in self.nicknames{
+//                        //print("IN ARRAY ")
+//                        if group.nickname == nickname{
+//                            //print("3: \(nickname)")
+//                            _groups.append(group)
+//                        }
+//                    }
+//
+//                }
+//            }
+//            self.groups = _groups
+//            self.tableView.reloadData()
+//
+//            //print("END")
+//        }
+        ////////////
 
         
     }
@@ -199,6 +208,36 @@ class GroupViewController: UIViewController, UITableViewDelegate,UITableViewData
             dvc.groupUid = group.uid
             dvc.group = group
             dvc.segueChoise = .profileGroup
+            
+            //////////
+//            var mails = [String]()
+//            
+//            let uid = group.uid
+//            let ref = Database.database().reference().child("groups").child(uid).child("groupusers")
+//            
+//            ref.observe(.value) { (snapshot) in
+//                
+//                
+//                var _mails:[String] = []
+//                
+//                if let snapshots = snapshot.children.allObjects as? [DataSnapshot]{
+//                    for snap in snapshots {
+//                        
+//                        
+//                        
+//                        guard let maildict = snap.value as? [String : AnyObject] else {return}
+//                        //guard let mail = maildict.values.first else {return}
+//                        guard let mail = maildict["email"] as? String else {return}
+//
+//                        _mails.append(mail)
+//                        
+//                    }
+//                }
+//                mails = _mails
+//                print("mailFROMGroupVC: \(mails)")
+//                dvc.mails = mails
+//            }
+            ///////////
         }
     }
     
@@ -209,5 +248,73 @@ class GroupViewController: UIViewController, UITableViewDelegate,UITableViewData
         performSegue(withIdentifier: "createGroupSegue", sender: nil)
     }
     
+    func displayListOfGroups(){
+        //
+        
+        
+        groups = []
+        nicknames = []
+        guard let user = Auth.auth().currentUser else {return}
+        
+        
+        
+        //===
+        ref.child(user.uid).child("groups").observe(.value) { (snapshot) in
+            
+            var _nicknames:[String] = []
+            
+            if let snapshots = snapshot.children.allObjects as? [DataSnapshot]{
+                for snap in snapshots {
+                    
+                    guard let hDict = snap.value as? [String:AnyObject] else {return}
+                    guard let nickname = hDict["nickname"] as? String else {return}
+                    //guard let uid = hDict["uid"] as? String else {return}
+                    
+                    
+                    //guard let nickname = [String](hDict.values).first else {return}
+                    
+                    //print("1: \(nickname)")
+                    
+                    _nicknames.append(nickname)
+                    //print("nicknames: \(nickname)")
+                }
+            }
+            self.nicknames = _nicknames
+            //self.tableView.reloadData()
+            
+            //print("2 nicks: \(_nicknames)")
+            
+            
+        }
+        
+        fbRef.observe(.value) { (snapshot) in
+            
+            var _groups:[AppGroup] = []
+            
+            //print("BEGIN")
+            if let snapshots = snapshot.children.allObjects as? [DataSnapshot]{
+                for snap in snapshots {
+                    //print("IN SNAPSHOTS")
+                    
+                    let group = AppGroup(snapshot: snap)
+                    for nickname in self.nicknames{
+                        //print("IN ARRAY ")
+                        if group.nickname == nickname{
+                            //print("3: \(nickname)")
+                            _groups.append(group)
+                        }
+                    }
+                    
+                }
+            }
+            self.groups = _groups
+            self.tableView.reloadData()
+            
+            //print("END")
+        }
+        
+        
+        //
+    }
 
 }

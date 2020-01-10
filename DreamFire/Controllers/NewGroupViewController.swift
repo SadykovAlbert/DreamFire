@@ -53,11 +53,12 @@ class NewGroupViewController: UIViewController,UITableViewDelegate,UITableViewDa
         descriptionTextField.text = ""
         nicknameTextField.text = ""
         saveBarButtonOutlet.title = "Save"
+        buttonOutlet.isHidden = true
         
         //
     }
     func setupProfile(){
-        buttonOutlet.isHidden = false
+        //buttonOutlet.isHidden = false
         tableViewOutlet.isHidden = false
         nameTextField.isEnabled = false
         descriptionTextField.isEnabled = false
@@ -69,6 +70,13 @@ class NewGroupViewController: UIViewController,UITableViewDelegate,UITableViewDa
         descriptionTextField.text = group?.description
         nicknameTextField.text = group?.nickname
         
+        buttonOutlet.isHidden = true
+        guard let userMail = Auth.auth().currentUser?.email else {return}
+        let groupAdmin = group?.admin
+        if userMail == groupAdmin{
+            buttonOutlet.isHidden = false
+        }
+        
         
     }
     
@@ -77,39 +85,19 @@ class NewGroupViewController: UIViewController,UITableViewDelegate,UITableViewDa
         
             self.displayListOfUsers()
         
-        //print("mailsInVDA: \(mails)")
         
         
         
-    }
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        //displayListOfUsers()
-        //print("VWD: \(mails)")
-    }
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        //displayListOfUsers()
-        //print("VDD: \(mails)")
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        //displayListOfUsers()
-        //generateMasFriends
-        //print("mailsInVWA: \(mails)")
         
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        //displayListOfUsers()
+    
         generateMasFriends()
         setupUI()
       
-        //print("mailsInVDL: \(mails)")
         
     }
     func generateMasFriends(){
@@ -120,25 +108,10 @@ class NewGroupViewController: UIViewController,UITableViewDelegate,UITableViewDa
             
             //
             var _mails = [String]()
-            //print("Snapshot is : \(snapshot)")
-            
-            
-            //
-//            guard let snaps = snapshot.children.allObjects as? [DataSnapshot] else {return}
-//            guard let mymas = snaps as? [AppUser]
-            //
-            
-//            guard let massivFriends = snapshot as? [Int:AppUser] else {return}
-//            print("mas: \(massivFriends)")
-//            guard let friend = snapshot.value as? AppUser else {print("error AS1"); return}
-            
-            //_friends.append(friend)
-            
-            //print("/////=========")
+
             if let snapshots = snapshot.children.allObjects as? [DataSnapshot]{
                 for snap in snapshots {
-                    //print("snap is: \(snap)")
-                    //let friend = AppUser(snapshot: snap)
+                    
                     guard let dict = snap.value as? [String:String] else {return}
                     guard let mail = dict["email"] else {return}
                     _mails.append(mail)
@@ -147,8 +120,7 @@ class NewGroupViewController: UIViewController,UITableViewDelegate,UITableViewDa
             }
          
             self.mails = _mails
-            //print("masMails: \(self.mails)")
-            //
+            
         }
         
         let usersRef = Database.database().reference().child("users")
@@ -169,44 +141,13 @@ class NewGroupViewController: UIViewController,UITableViewDelegate,UITableViewDa
                 
             }
             self.masFriends = _friends
-            print("friends: \(self.masFriends)")
-            print("//////============")
+            
         }
         
     }
     
     @IBAction func saveBarButtonPressed(_ sender: UIBarButtonItem) {
-        
-//        guard let name = nameTextField.text,
-//        let  description = descriptionTextField.text,
-//        let nickname = nicknameTextField.text,
-//        name != "",
-//        description != "",
-//        nickname != ""
-//            else {return}
-//
-//        nameTextField.text = ""
-//        descriptionTextField.text = ""
-//        nicknameTextField.text = ""
-//
-//
-//        guard let user = Auth.auth().currentUser else {return}
-//        guard let userMail = user.email else {return}
-//
-//        let groupRef = Database.database().reference().child("groups").childByAutoId()
-//
-//        guard let uid = groupRef.key else {return}
-//
-//
-//
-//        let group = AppGroup(name: name, description: description, nickname: nickname, admin: userMail, uid: uid)
-//        groupRef.setValue(group.convertToDictionary())
-//        groupRef.child("groupusers").childByAutoId().setValue(["email" : userMail])
-//
-//        let myGroupRef = Database.database().reference().child("users").child(user.uid).child("groups").childByAutoId()
-//        myGroupRef.setValue(["nickname":group.nickname])
-//        self.navigationController?.popViewController(animated: true)
-        
+    
         switch segueChoise {
         case .profileGroup:
             addButtonAction()
@@ -244,7 +185,7 @@ class NewGroupViewController: UIViewController,UITableViewDelegate,UITableViewDa
         groupRef.setValue(group.convertToDictionary())
         groupRef.child("groupusers").childByAutoId().setValue(["email" : userMail,"uid":user.uid])
         
-        let myGroupRef = Database.database().reference().child("users").child(user.uid).child("groups").childByAutoId()
+        let myGroupRef = Database.database().reference().child("users").child(user.uid).child("groups").child(uid)//
         myGroupRef.setValue(["nickname":group.nickname])
         self.navigationController?.popViewController(animated: true)
         //
@@ -270,6 +211,36 @@ class NewGroupViewController: UIViewController,UITableViewDelegate,UITableViewDa
     
     @IBAction func buttonPressed(_ sender: UIButton) {
         //DELETE GROUP
+        //print("HELOO DELETE")
+        guard let groupUid = group?.uid else {return}
+        
+        //print("groupUsers: \(groupUsers)")
+        
+        //
+        var masRef = [DatabaseReference]()
+        for _ in 0 ..< groupUsers.count{
+            masRef.append(Database.database().reference().child("users"))
+        }
+        //
+        //var i = 0
+        for userInGroup in groupUsers{
+            let userUid = userInGroup.uid
+            
+            //print("uid: \(userUid)")
+            let groupOfUserRef = Database.database().reference().child("users").child(userUid).child("groups").child(groupUid)
+            
+            //let groupOfUserRef = masRef[i].child(userUid).child("groups").child(groupUid)
+            //i += 1
+            groupOfUserRef.removeValue()
+            //print("INArray")
+        }
+        
+        //print("group users count: \(groupUsers.count)")
+        let usersOfgroupRef = Database.database().reference().child("groups").child(groupUid)
+        usersOfgroupRef.removeValue()
+        
+        self.navigationController?.popViewController(animated: true)
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -347,16 +318,10 @@ class NewGroupViewController: UIViewController,UITableViewDelegate,UITableViewDa
             self.tableViewOutlet.reloadData()
 
             
-            //print("VDA ========")
-            //print("count: \(self.groupUsers.count)")
+            
         }
         //======
         
-        
-        
-        
     }
-    
-    
     
 }

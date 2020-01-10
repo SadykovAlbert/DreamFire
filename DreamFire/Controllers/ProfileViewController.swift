@@ -48,8 +48,7 @@ class ProfileViewController: UIViewController {
     
     func setupRegistration(){
         buttonOutlet.setTitle("Registrate", for: .normal)
-       // rBarButtonItemOutlet.title = "Registrate"
-      //  navigationItem.title = "Registration"
+       
     
     }
     
@@ -86,7 +85,7 @@ class ProfileViewController: UIViewController {
         nameTextField.text = friend?.name
         firstNameTextField.text = friend?.lastName
         
-        //buttonOutlet.setTitle("Dismiss", for: .normal)
+        
         buttonOutlet.isHidden = true
         
       

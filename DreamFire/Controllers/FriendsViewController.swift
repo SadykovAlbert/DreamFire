@@ -49,7 +49,7 @@ class FriendsViewController: UIViewController,UITableViewDelegate,UITableViewDat
 
                     
                     _mails.append(mail)
-                    //print("mail: \(mail)")
+                    
                 }
             }
             self.mails = _mails
@@ -61,7 +61,6 @@ class FriendsViewController: UIViewController,UITableViewDelegate,UITableViewDat
         let fbRef = Database.database().reference().child("users")
         fbRef.observe(.value) { (snapshot) in
             
-            //print("snap: \(snapshot)")
             
                         var _friends:[AppUser] = []
             
@@ -112,11 +111,5 @@ class FriendsViewController: UIViewController,UITableViewDelegate,UITableViewDat
     }
     
     
-    func getMails(){
-        for friend in friends{
-            let mail = friend.email
-            mails.append(mail)
-        }
-    }
 
 }

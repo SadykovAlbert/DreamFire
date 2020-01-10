@@ -209,6 +209,10 @@ class NewGroupViewController: UIViewController,UITableViewDelegate,UITableViewDa
     }
     
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     @IBAction func buttonPressed(_ sender: UIButton) {
         //DELETE GROUP
         //print("HELOO DELETE")

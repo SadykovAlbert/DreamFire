@@ -335,12 +335,6 @@
                                     <constraint firstItem="x1q-bY-8Tg" firstAttribute="leading" secondItem="ST0-Xg-83H" secondAttribute="leading" id="sF5-4W-STW"/>
                                 </constraints>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter user's mail" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aNZ-yR-gJb">
-                                <rect key="frame" x="140" y="328" width="134" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kKx-Oc-Zag">
                                 <rect key="frame" x="192" y="598.5" width="30" height="30"/>
                                 <state key="normal" title="Find"/>
@@ -348,16 +342,24 @@
                                     <action selector="findButtonPressed:" destination="CMa-9g-Ttg" eventType="touchUpInside" id="DMR-Ug-mxo"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter user's mail" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aNZ-yR-gJb">
+                                <rect key="frame" x="143.5" y="149" width="127" height="20.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="127" id="RfB-oE-VhJ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="ST0-Xg-83H" secondAttribute="trailing" constant="30" id="5se-9y-tUg"/>
-                            <constraint firstItem="aNZ-yR-gJb" firstAttribute="leading" secondItem="5KY-yF-D7A" secondAttribute="leadingMargin" constant="120" id="7Dk-8d-Fli"/>
-                            <constraint firstItem="aNZ-yR-gJb" firstAttribute="top" secondItem="NsA-7C-D1n" secondAttribute="bottom" constant="240" id="IbC-Gc-sHU"/>
-                            <constraint firstItem="aNZ-yR-gJb" firstAttribute="centerX" secondItem="5KY-yF-D7A" secondAttribute="centerX" id="JYG-Na-W7p"/>
+                            <constraint firstItem="aNZ-yR-gJb" firstAttribute="top" secondItem="NsA-7C-D1n" secondAttribute="bottom" constant="61" id="BZp-jc-6T7"/>
                             <constraint firstItem="kKx-Oc-Zag" firstAttribute="top" secondItem="ST0-Xg-83H" secondAttribute="bottom" constant="90" id="PFD-Hf-lFl"/>
+                            <constraint firstItem="aNZ-yR-gJb" firstAttribute="leading" relation="lessThanOrEqual" secondItem="5KY-yF-D7A" secondAttribute="leading" constant="144" id="Ruq-8i-O9n"/>
+                            <constraint firstItem="aNZ-yR-gJb" firstAttribute="centerX" secondItem="5KY-yF-D7A" secondAttribute="centerX" id="Uqy-zD-se7"/>
                             <constraint firstItem="ST0-Xg-83H" firstAttribute="leading" secondItem="5KY-yF-D7A" secondAttribute="leadingMargin" constant="30" id="aZZ-1y-ZOP"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="aNZ-yR-gJb" secondAttribute="trailing" constant="120" id="brO-gP-zN9"/>
                             <constraint firstItem="ST0-Xg-83H" firstAttribute="centerY" secondItem="5KY-yF-D7A" secondAttribute="centerY" id="lb6-6X-bQf"/>
                             <constraint firstItem="ST0-Xg-83H" firstAttribute="centerX" secondItem="5KY-yF-D7A" secondAttribute="centerX" id="xde-sN-Eim"/>
                             <constraint firstItem="kKx-Oc-Zag" firstAttribute="centerX" secondItem="5KY-yF-D7A" secondAttribute="centerX" id="yB8-W8-Jcr"/>

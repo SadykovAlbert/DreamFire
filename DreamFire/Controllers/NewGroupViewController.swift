@@ -24,7 +24,7 @@ class NewGroupViewController: UIViewController,UITableViewDelegate,UITableViewDa
     var masFriends = [AppUser]()
     var groupUid: String?
     var groupUsers = [AppUser]()
-
+    
     var mails = [String]()
     
     enum whichSegue {
@@ -42,7 +42,7 @@ class NewGroupViewController: UIViewController,UITableViewDelegate,UITableViewDa
         case .profileGroup:
             setupProfile()
         }
-
+        
     }
     
     func setupRegistration(){
@@ -83,7 +83,7 @@ class NewGroupViewController: UIViewController,UITableViewDelegate,UITableViewDa
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-            self.displayListOfUsers()
+        self.displayListOfUsers()
         
         
         
@@ -93,11 +93,11 @@ class NewGroupViewController: UIViewController,UITableViewDelegate,UITableViewDa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-    
+        
+        
         generateMasFriends()
         setupUI()
-      
+        
         
     }
     func generateMasFriends(){
@@ -108,17 +108,17 @@ class NewGroupViewController: UIViewController,UITableViewDelegate,UITableViewDa
             
             //
             var _mails = [String]()
-
+            
             if let snapshots = snapshot.children.allObjects as? [DataSnapshot]{
                 for snap in snapshots {
                     
                     guard let dict = snap.value as? [String:String] else {return}
                     guard let mail = dict["email"] else {return}
                     _mails.append(mail)
-
+                    
                 }
             }
-         
+            
             self.mails = _mails
             
         }
@@ -147,7 +147,7 @@ class NewGroupViewController: UIViewController,UITableViewDelegate,UITableViewDa
     }
     
     @IBAction func saveBarButtonPressed(_ sender: UIBarButtonItem) {
-    
+        
         switch segueChoise {
         case .profileGroup:
             addButtonAction()
@@ -196,9 +196,8 @@ class NewGroupViewController: UIViewController,UITableViewDelegate,UITableViewDa
         if segue.identifier == "addUsersTOGroupSegue"{
             let vc = segue.destination as! AddFriendViewController
             vc.segueChoise = .addNewUserToGroup
-            //vc.groupUid = groupUid
             vc.group = group
-            vc.friends = masFriends
+            
         }
     }
     
@@ -215,34 +214,18 @@ class NewGroupViewController: UIViewController,UITableViewDelegate,UITableViewDa
     
     @IBAction func buttonPressed(_ sender: UIButton) {
         //DELETE GROUP
-        //print("HELOO DELETE")
+        
         guard let groupUid = group?.uid else {return}
         
-        //print("groupUsers: \(groupUsers)")
         
-        //
-        var masRef = [DatabaseReference]()
-        for _ in 0 ..< groupUsers.count{
-            masRef.append(Database.database().reference().child("users"))
-        }
-        //
-        //var i = 0
+        
         for userInGroup in groupUsers{
             let userUid = userInGroup.uid
+            Database.database().reference().child("users").child(userUid).child("groups").child(groupUid).removeValue()
             
-            //print("uid: \(userUid)")
-            let groupOfUserRef = Database.database().reference().child("users").child(userUid).child("groups").child(groupUid)
-            
-            //let groupOfUserRef = masRef[i].child(userUid).child("groups").child(groupUid)
-            //i += 1
-            groupOfUserRef.removeValue()
-            //print("INArray")
         }
         
-        //print("group users count: \(groupUsers.count)")
-        let usersOfgroupRef = Database.database().reference().child("groups").child(groupUid)
-        usersOfgroupRef.removeValue()
-        
+        Database.database().reference().child("groups").child(groupUid).removeValue()
         self.navigationController?.popViewController(animated: true)
         
     }
@@ -256,8 +239,19 @@ class NewGroupViewController: UIViewController,UITableViewDelegate,UITableViewDa
         
         let name = groupUsers[indexPath.row].name
         let lastName = groupUsers[indexPath.row].lastName
+        let isItAdminMail = groupUsers[indexPath.row].email
+        
         cell.nameLabel.text = name
         cell.lastNameLabel.text = lastName
+        
+        
+        if segueChoise == .profileGroup {
+            
+            if group?.admin == isItAdminMail{
+                guard let name = cell.nameLabel.text else{return cell}
+                cell.nameLabel.text =    "\(name)                                 ADMIN"
+            }
+        }
         
         return cell
     }
@@ -269,45 +263,45 @@ class NewGroupViewController: UIViewController,UITableViewDelegate,UITableViewDa
     func displayListOfUsers(){
         
         print("mailsINDisplaList: \(mails)")
-
+        
         //========
-
+        
         guard let uid = groupUid else {return}
         let ref = Database.database().reference().child("groups").child(uid).child("groupusers")
-
+        
         ref.observe(.value) { (snapshot) in
-
+            
             
             var _mails:[String] = []
-
+            
             if let snapshots = snapshot.children.allObjects as? [DataSnapshot]{
                 for snap in snapshots {
-
-
-
+                    
+                    
+                    
                     guard let maildict = snap.value as? [String : AnyObject] else {return}
                     guard let mail = maildict["email"] as? String else {return}
-
+                    
                     _mails.append(mail)
-
+                    
                 }
             }
             self.mails = _mails
-
+            
         }
-
+        
         //================
         
         let usersRef = Database.database().reference().child("users")
         usersRef.observe(.value) { (snapshot) in
-
+            
             
             var _groupUsers:[AppUser] = []
-
+            
             if let snapshots = snapshot.children.allObjects as? [DataSnapshot]{
                 for snap in snapshots {
-
-                   
+                    
+                    
                     let user = AppUser(snapshot: snap)
                     for mail in self.mails{
                         
@@ -315,12 +309,12 @@ class NewGroupViewController: UIViewController,UITableViewDelegate,UITableViewDa
                             _groupUsers.append(user)
                         }
                     }
-
+                    
                 }
             }
             self.groupUsers = _groupUsers
             self.tableViewOutlet.reloadData()
-
+            
             
             
         }

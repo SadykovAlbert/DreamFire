@@ -10,7 +10,7 @@ class GroupViewController: UIViewController, UITableViewDelegate,UITableViewData
     
     let ref = Database.database().reference().child("users")
     let fbRef = Database.database().reference().child("groups")
-
+    
     var groups = [AppGroup]()
     var nicknames = [String]()
     
@@ -30,7 +30,7 @@ class GroupViewController: UIViewController, UITableViewDelegate,UITableViewData
         return cell
     }
     
-
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 85
     }
@@ -41,12 +41,12 @@ class GroupViewController: UIViewController, UITableViewDelegate,UITableViewData
         
         displayListOfGroups()
     }
- 
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-     
+        
+        
         
     }
     @IBAction override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -62,11 +62,11 @@ class GroupViewController: UIViewController, UITableViewDelegate,UITableViewData
             dvc.group = group
             dvc.segueChoise = .profileGroup
             
-
+            
         }
     }
     
-
+    
     
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
         
@@ -93,26 +93,24 @@ class GroupViewController: UIViewController, UITableViewDelegate,UITableViewData
                     
                     guard let hDict = snap.value as? [String:AnyObject] else {return}
                     guard let nickname = hDict["nickname"] as? String else {return}
-                  
+                    
                     _nicknames.append(nickname)
-                  
+                    
                 }
             }
             self.nicknames = _nicknames
-          
+            
         }
         
         fbRef.observe(.value) { (snapshot) in
             
             var _groups:[AppGroup] = []
             
-            //print("BEGIN")
+            
             if let snapshots = snapshot.children.allObjects as? [DataSnapshot]{
                 for snap in snapshots {
-              
                     
-                    guard let _ = snap.value as? [String:AnyObject] else {return}
-
+                    
                     
                     let group = AppGroup(snapshot: snap)
                     for nickname in self.nicknames{
@@ -132,7 +130,7 @@ class GroupViewController: UIViewController, UITableViewDelegate,UITableViewData
         }
         
         
-        //
+        
     }
-
+    
 }

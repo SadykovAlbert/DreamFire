@@ -46,39 +46,39 @@ class FriendsViewController: UIViewController,UITableViewDelegate,UITableViewDat
                     
                     guard let hDict = snap.value as? [String:String] else {return}
                     guard let mail = [String](hDict.values).first else {return}
-
+                    
                     
                     _mails.append(mail)
                     
                 }
             }
             self.mails = _mails
-           
+            
         }
         //==
-
+        
         //=========================
         let fbRef = Database.database().reference().child("users")
         fbRef.observe(.value) { (snapshot) in
             
             
-                        var _friends:[AppUser] = []
+            var _friends:[AppUser] = []
             
-                        if let snapshots = snapshot.children.allObjects as? [DataSnapshot]{
-                            for snap in snapshots {
-            
-                                //print("SNAP-----: \(snap)")
-                                let user = AppUser(snapshot: snap)
-                                for mail in self.mails{
-                                    if user.email == mail{
-                                        _friends.append(user)
-                                    }
-                                }
-                                
-                            }
+            if let snapshots = snapshot.children.allObjects as? [DataSnapshot]{
+                for snap in snapshots {
+                    
+                    //print("SNAP-----: \(snap)")
+                    let user = AppUser(snapshot: snap)
+                    for mail in self.mails{
+                        if user.email == mail{
+                            _friends.append(user)
                         }
-                        self.friends = _friends
-                        self.tableView.reloadData()
+                    }
+                    
+                }
+            }
+            self.friends = _friends
+            self.tableView.reloadData()
             
         }
         
@@ -89,7 +89,7 @@ class FriendsViewController: UIViewController,UITableViewDelegate,UITableViewDat
     
     
     
-     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 85
     }
     
@@ -107,9 +107,9 @@ class FriendsViewController: UIViewController,UITableViewDelegate,UITableViewDat
             vc.friends = friends
             vc.segueChoise = .addNewFriend
         }
-    
+        
     }
     
     
-
+    
 }

@@ -18,7 +18,7 @@ class AddFriendViewController: UIViewController {
     var mails = [String]()
     let ref = Database.database().reference().child("users")
     let myMail = Auth.auth().currentUser?.email
-    //var groupUid:String?
+    
     var group:AppGroup?
     
     enum whichSegue {
@@ -28,11 +28,15 @@ class AddFriendViewController: UIViewController {
     
     var segueChoise: whichSegue = .addNewUserToGroup
     
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        getMailsAndFriends()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        
         
         warningLabel.alpha = 0
     }
@@ -65,7 +69,6 @@ class AddFriendViewController: UIViewController {
     
     func addToFriend(){
         
-        getMails()
         guard var textField = mailTextField.text, textField != "" else {return}
         self.mailTextField.text = ""
         
@@ -100,7 +103,7 @@ class AddFriendViewController: UIViewController {
                     dict2 = dicthelp
                 }
                 let mail = dict2["email"] as! String
-               
+                
                 guard textField != "" else {return}
                 self.addToFriendByMail(mail: mail, uid: uid)
                 textField = ""
@@ -117,37 +120,42 @@ class AddFriendViewController: UIViewController {
     }
     func addToGroup(){
         
-        guard let textField = mailTextField.text, textField != "" else {return}
+        print("HEY func addToGroup")
+        print("===================")
+        guard var textField = mailTextField.text, textField != "" else {return}
         self.mailTextField.text = ""
         
         var friendsMails = [String]()
         var flag = false
         var userUid: String?
         
+        
+        //проверка есть ли такой юзер в друзьях
         for friend in friends {
             friendsMails.append(friend.email)
             if textField == friend.email{
                 userUid = friend.uid
-                flag = true
+                flag = true // да , есть
                 break
             }
         }
         if flag == false{
-            displayWarningLabel(withText: "You dont have such user in friends")
+            displayWarningLabel(withText: "You dont have such user in friends")//такого нет
             return
         }
-        
+        // если здесь то есть
         var groupMails = [String]()
         
         guard let groupUid = group?.uid else {return}
+        print("HELLOoooooooooo=========")
         let groupRef = Database.database().reference().child("groups").child(groupUid).child("groupusers")
-        groupRef.observe(.value) { (snapshot) in
+        groupRef.observe(.value) { (snapshot) in// есть ли такой человек (мой друг) в группе?
             
             var _groupMails = [String]()
             
             if let snapshots = snapshot.children.allObjects as? [DataSnapshot]{
                 for snap in snapshots {
-                   
+                    
                     guard let dict = snap.value as? [String:AnyObject] else {return}
                     
                     guard let mail = dict["email"] as? String else {return}
@@ -155,42 +163,39 @@ class AddFriendViewController: UIViewController {
                     _groupMails.append(mail)
                     
                 }
-                
             }
             
-            groupMails = _groupMails
+            groupMails = _groupMails// сформирован массив майлов участников группы
             
             var flagExistedUser = false
-            for mailG in groupMails{
-                for mailF in friendsMails{
-                    if mailF == mailG{
-                        
-                        flagExistedUser = true
-                        break
-                    }
+            
+            for mailG in groupMails{//======
+                
+                if mailG == textField{
+                    flagExistedUser = true
                 }
             }
-            
+            print("flagExistedUser: \(flagExistedUser)")
             if flagExistedUser == true{
                 self.displayWarningLabel(withText: "Such user already exist")
+                return
             }
             else{
                 
-                guard let uid = userUid else {return}
-                guard let nickname = self.group?.nickname else {return}
+                guard textField != "" else {print("ERROR TF PID");return}
+                guard let uid = userUid else {print("ERROR uid = userUid");return}
+                guard let nickname = self.group?.nickname else {print("nickname = self.group?.nickname");return}
                 let userRef = Database.database().reference().child("users").child(uid).child("groups").child(groupUid)
                 userRef.setValue(["nickname": nickname])
                 
-                
+                print("HELLO CREATE place for user")
                 let groupRef = Database.database().reference().child("groups").child(groupUid).child("groupusers").childByAutoId()
                 groupRef.setValue(["email":textField,"uid":uid])
-                
+                textField = ""
+                self.navigationController?.popViewController(animated: true)
             }
-            
-            
         }//
-        self.navigationController?.popViewController(animated: true)
-
+        
     }
     
     
@@ -206,36 +211,62 @@ class AddFriendViewController: UIViewController {
         
     }
     
-    func addToFriendFB(uid: String){
-        
-        guard let user = Auth.auth().currentUser else {return}
-        
-        
-        let friendRef = ref.child(uid)
-        let ourRef = self.ref.child(user.uid).child("friends").childByAutoId()
-        
-        friendRef.observe(.value) { (snapshot) in
-            let friendUser = AppUser(snapshot: snapshot)
-            ourRef.setValue(friendUser.convertToDictionary())
-        }
-        
-        
-        let ourRef1 = self.ref.child(user.uid)
-        let friendRef1 = self.ref.child(uid).child("friends").childByAutoId()
-        
-        ourRef1.observe(.value) { (snapshot) in
-            let ourUser = AppUser(snapshot: snapshot)
-            friendRef1.setValue(ourUser.convertToDictionary())
-        }
-        
-    }
     
-    func getMails(){
-        for friend in friends{
-            let mail = friend.email
-            mails.append(mail)
+    
+    func getMailsAndFriends(){
+        
+        guard let userUid = Auth.auth().currentUser?.uid else {return}
+        
+        let friendsMailRef = Database.database().reference().child("users").child(userUid).child("friendsmail")
+        
+        
+        friendsMailRef.observe(.value) { (snapshot) in
+            
+            var _mails = [String]()
+            
+            if let snapshots = snapshot.children.allObjects as? [DataSnapshot]{
+                for snap in snapshots {
+                    
+                    guard let dict = snap.value as? [String:AnyObject] else {return}
+                    guard let mail = dict["email"] as? String else {return}
+                    
+                    _mails.append(mail)
+                    
+                }
+                
+                
+            }
+            
+            self.mails = _mails
+            
+        }
+        
+        
+        let friendsRef = Database.database().reference().child("users")
+        
+        
+        friendsRef.observe(.value) { (snapshot) in
+            
+            var _friends = [AppUser]()
+            
+            if let snapshots = snapshot.children.allObjects as? [DataSnapshot]{
+                for snap in snapshots {
+                    
+                    let user = AppUser(snapshot: snap)
+                    for mail in self.mails{
+                        if mail == user.email{
+                            _friends.append(user)
+                            
+                        }
+                        
+                    }
+                    
+                }
+                
+            }
+            self.friends = _friends
+            
         }
     }
-    
     
 }

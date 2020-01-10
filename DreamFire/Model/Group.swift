@@ -11,14 +11,14 @@ import Foundation
 import Firebase
 
 struct AppGroup {
-
+    
     var name: String = ""
     var description: String = ""
     var nickname: String = ""
     var admin: String = ""
     var uid: String = ""
     let ref: DatabaseReference?
-
+    
     init(name: String, description: String , nickname: String, admin: String, uid: String) {
         self.name = name
         self.description = description
@@ -27,10 +27,10 @@ struct AppGroup {
         self.uid = uid
         self.ref = nil
     }
-
+    
     init(snapshot: DataSnapshot) {
         let snapshotValue = snapshot.value as! [String: AnyObject]
-
+        
         name = snapshotValue["name"] as! String
         description = snapshotValue["description"] as! String
         nickname = snapshotValue["nickname"] as! String
@@ -38,7 +38,7 @@ struct AppGroup {
         uid = snapshotValue["uid"] as! String
         ref = snapshot.ref
     }
-
+    
     func convertToDictionary() -> Any {
         return ["name": name, "description": description, "nickname": nickname, "admin": admin, "uid": uid]
     }

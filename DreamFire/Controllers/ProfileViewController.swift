@@ -182,12 +182,17 @@ class ProfileViewController: UIViewController {
     }
     
     @IBAction func signOutButtonPressed(_ sender: UIButton) {
+        
+         let viewController = storyboard?.instantiateViewController(withIdentifier: "LoginMenu") as! UIViewController
+
         do {
             try Auth.auth().signOut()
             
         } catch {
             print(error.localizedDescription)
         }
-        dismiss(animated: true, completion: nil)
+        
+        self.present(viewController, animated: true)
+        //dismiss(animated: true, completion: nil)
     }
 }

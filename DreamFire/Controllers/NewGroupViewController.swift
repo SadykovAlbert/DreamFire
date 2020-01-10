@@ -249,7 +249,7 @@ class NewGroupViewController: UIViewController,UITableViewDelegate,UITableViewDa
             
             if group?.admin == isItAdminMail{
                 guard let name = cell.nameLabel.text else{return cell}
-                cell.nameLabel.text =    "\(name)                                 ADMIN"
+                cell.nameLabel.text =    "\(name)                  ADMIN"
             }
         }
         

@@ -12,7 +12,7 @@
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="DreamFire" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginMenu" id="BYZ-38-t0r" customClass="LoginViewController" customModule="DreamFire" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -687,7 +687,7 @@
         <image name="stdimage" width="104.5" height="120.5"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="amW-38-d3Z"/>
+        <segue reference="XHr-9m-onQ"/>
         <segue reference="P6V-Gt-20m"/>
         <segue reference="yCO-dO-uZ7"/>
         <segue reference="Dro-UJ-oh9"/>

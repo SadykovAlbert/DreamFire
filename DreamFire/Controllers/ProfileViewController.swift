@@ -4,7 +4,7 @@ import UIKit
 import Firebase
 
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     @IBOutlet weak var photoImage: UIImageView!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var firstNameTextField: UITextField!
@@ -13,6 +13,16 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var buttonOutlet: UIButton!
     @IBOutlet weak var rBarButtonItemOutlet: UIBarButtonItem!
     @IBOutlet weak var signOutButton: UIButton!
+    
+    fileprivate var image: UIImage? {
+        get {
+            return photoImage.image
+        }
+        set {
+            photoImage.image = newValue
+            photoImage.contentMode = UIView.ContentMode.scaleAspectFill
+        }
+    }
     
     var friend: AppUser?
     let ref = Database.database().reference().child("users")
@@ -29,6 +39,7 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         
         setupUI()
+        if segueChoise == .profile {setupImageInteraction()}
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -79,7 +90,55 @@ class ProfileViewController: UIViewController {
         }
         
     }
+    //
+    fileprivate func fetchImage(urlInput: URL?) {
+        
+        let imageURL = urlInput
+        
+        let queue = DispatchQueue.global(qos: .utility)
+        queue.async {
+            guard let url = imageURL, let imageData = try? Data(contentsOf: url) else { return }
+            DispatchQueue.main.async {
+                self.image = UIImage(data: imageData)
+            }
+        }
+    }
+    //
     
+    func setupImageInteraction(){
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
+        photoImage.isUserInteractionEnabled = true
+        photoImage.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
+    {
+        
+        let ac = UIAlertController(title: "Загрузка изображения", message: "Введите URL изображения", preferredStyle: .alert)
+        
+        let uploadAction = UIAlertAction(title: "Загрузить", style: .default) { (UIAlertAction) in
+            guard let tf = ac.textFields?.first?.text, tf != "" else {return}
+            print("Hello upload")
+            let url = URL(string: tf)
+            self.fetchImage(urlInput: url)
+            
+        }
+        
+        let cancelAction = UIAlertAction(title: "Отмена", style: .default, handler: nil)
+        
+        ac.addAction(uploadAction)
+        ac.addAction(cancelAction)
+        
+        ac.addTextField { (urlTF) in
+            urlTF.placeholder = "URL"
+            
+        }
+        
+        
+        self.present(ac, animated: true, completion: nil)
+        
+        
+    }
     func setupFriend(){
         buttonOutlet.setTitle("Add to Friends", for: .normal)
         passwordTextField.isHidden = true

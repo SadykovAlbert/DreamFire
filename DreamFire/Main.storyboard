@@ -226,7 +226,11 @@
                                 <rect key="frame" x="10" y="108" width="394" height="734"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stdimage" translatesAutoresizingMaskIntoConstraints="NO" id="Gmn-4i-QsF">
-                                        <rect key="frame" x="40" y="0.0" width="314" height="155"/>
+                                        <rect key="frame" x="130" y="0.0" width="134" height="155"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="155" id="7yk-lO-uOX"/>
+                                            <constraint firstAttribute="width" constant="134" id="dvJ-pz-GpD"/>
+                                        </constraints>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ri6-jV-aFc">
                                         <rect key="frame" x="10" y="193" width="374" height="155"/>
@@ -273,10 +277,11 @@
                                     </button>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="Gmn-4i-QsF" firstAttribute="top" secondItem="1qI-KC-iOD" secondAttribute="top" id="343-mh-eHV"/>
                                     <constraint firstAttribute="trailing" secondItem="ri6-jV-aFc" secondAttribute="trailing" constant="10" id="FuW-Th-TQ4"/>
-                                    <constraint firstAttribute="trailing" secondItem="Gmn-4i-QsF" secondAttribute="trailing" constant="40" id="HKp-IV-tv2"/>
                                     <constraint firstItem="ri6-jV-aFc" firstAttribute="leading" secondItem="1qI-KC-iOD" secondAttribute="leading" constant="10" id="NdX-mU-O18"/>
-                                    <constraint firstItem="Gmn-4i-QsF" firstAttribute="leading" secondItem="1qI-KC-iOD" secondAttribute="leading" constant="40" id="zYl-Cj-htN"/>
+                                    <constraint firstItem="Gmn-4i-QsF" firstAttribute="centerX" secondItem="1qI-KC-iOD" secondAttribute="centerX" id="Vri-wH-YHq"/>
+                                    <constraint firstItem="Gmn-4i-QsF" firstAttribute="leading" secondItem="1qI-KC-iOD" secondAttribute="leading" constant="130" id="hBm-RH-KTN"/>
                                 </constraints>
                             </stackView>
                         </subviews>
@@ -687,7 +692,7 @@
         <image name="stdimage" width="104.5" height="120.5"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="XHr-9m-onQ"/>
+        <segue reference="amW-38-d3Z"/>
         <segue reference="P6V-Gt-20m"/>
         <segue reference="yCO-dO-uZ7"/>
         <segue reference="Dro-UJ-oh9"/>
